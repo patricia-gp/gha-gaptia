@@ -13,7 +13,6 @@ jobs:
   build-hello:
   
     # The type of runner that the job will run on
-    name: Linux Ubuntu 20.04
     runs-on: ubuntu-20.04    
     container:
       image: ubuntu:20.04
