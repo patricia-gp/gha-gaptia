@@ -7,7 +7,7 @@ echo "--------------------------------------------------------------------------
 echo $output
 echo $output > "./.secrets.baseline"
 cat "./.secrets.baseline"
-#echo "output-scan=$SECRET_BASELINE_FILE" >> $GITHUB_OUTPUT
+echo $output >> $GITHUB_OUTPUT
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
 
 lines=$(echo $output | jq '.results' | wc -l)
