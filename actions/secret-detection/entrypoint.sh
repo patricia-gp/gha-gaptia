@@ -1,15 +1,15 @@
 #!/usr/bin/env sh
 set -e
 
-detect-secrets scan > .secrets.baseline
+output=$(detect-secrets scan)
+#> .secrets.baseline
 
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
-cat .secrets.baseline
+echo $output
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
 
-lines=$(cat .secrets.baseline | jq '.results' | wc -l)
+lines=$(echo $output | jq '.results' | wc -l)
 
 if [ "$lines" -gt 1 ]; then
-    echo "Secret Check Failed"
-    exit 1
+    echo "Error: There are hardcoded secrets and they must be removed" && exit 1
 fi
