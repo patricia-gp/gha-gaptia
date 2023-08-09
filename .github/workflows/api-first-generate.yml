@@ -21,14 +21,10 @@ jobs:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
         uses: actions/checkout@v3.5.3
           
-      # Preview install OpenAPI
-      - name: Preview install OpenAPI
-        uses: patricia-gp/gha-gaptia/actions/api-first-generate@main
-
       # Use the action to generate a client package
       # This uses the default path for the openapi document and thus assumes there is an openapi.json in the current workspace.
       - name: Generate Client & Stub Java
-        uses: openapi-generators/openapitools-generator-action@v1
+        uses: patricia-gp/gha-gaptia/actions/api-first-generate@main
         with:
           generator: java
           openapi-file: apis/*.yml
