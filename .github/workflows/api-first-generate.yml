@@ -32,7 +32,13 @@ jobs:
         with:
           generator: spring
           openapi-file: apis/gaptia-rest.yml
-          command-args: -o target --group-id org.gaptia -artifact-id app-gaptia --package-name app-gaptia --version 1.0.0-SNAPSHOT
+          command-args: ^
+            --output target 
+            --group-id org.gaptia 
+            --artifact-id app-gaptia 
+            --package-name app-gaptia 
+            --version 1.0.0-SNAPSHOT
+            --api-package org.gaptia 
       - name: List
         run: |
           cd target
