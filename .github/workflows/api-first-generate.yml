@@ -14,12 +14,16 @@ jobs:
     container:
       image: ubuntu:20.04
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
+        uses: actions/checkout@v3.5.3
 
-    - name: Build Docker image
-      run: docker build -t my-api-generator .
+      # Run OpenAPI
+      - name: Generate API-First with OpenAPI
+        run: docker build -t my-api-generator .
 
-    - name: Generate API
-      run: docker run --rm my-api-generator generate-api -f api.yaml
+      - name: Generate API
+        uses: patricia-gp/gha-gaptia/actions/api-first-generate@main
