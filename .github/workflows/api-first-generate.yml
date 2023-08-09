@@ -46,6 +46,7 @@ jobs:
       - name: Publish to GitHub Packages
         run: |
           cd target
-          mvn --batch-mode deploy
+          ls -Rla
+          mvn deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
