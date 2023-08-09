@@ -50,6 +50,7 @@ jobs:
           regex_pattern: '<version>([^<]+)<'
 
       - name: Publish to GitHub Packages
+        if: github.ref == 'refs/heads/main-xxx'
         run: |
           cd target
           mvn deploy
