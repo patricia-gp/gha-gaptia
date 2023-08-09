@@ -1,10 +1,10 @@
-# Detect Secrets Action
+# Secret Detection Action
 
-This github action scans a repository usuing Yelp's [Detect Secrets](https://github.com/Yelp/detect-secrets) library.
+This github action scans a repository using Yelp.
 
 ## Example usage
 
 ```
-- name: Detect Secrets
+- name: Secret Detection
   uses: patricia-gp/gha-gaptia/actions/secret-detection@main
 ```

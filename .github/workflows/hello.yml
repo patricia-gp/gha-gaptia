@@ -17,12 +17,27 @@ jobs:
     container:
       image: ubuntu:20.04
 
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
+      contents: write
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    
-     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
+      - name: Install GIT
+        run: |
+          # install GIT, as without it checkout would use REST API
+          apt update
+          apt install -y git
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
         uses: actions/checkout@v3.5.3
+
+      # Fix GIT not liking owner of the checkout dir
+      - name: Set ownership
+        run: |
+          chown -R $(id -u):$(id -g) $PWD
 
       # Runs a single command using the runners shell
       - name: Run a one-line script

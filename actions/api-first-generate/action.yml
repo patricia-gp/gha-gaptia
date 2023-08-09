@@ -1,0 +1,9 @@
+# action.yml
+name: "API First Generate"
+description: "Use OpenAPI plugin to generate API"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+branding:
+  icon: "lock"
+  color: "gray-dark"
