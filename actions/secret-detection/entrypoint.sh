@@ -1,16 +1,13 @@
 #!/usr/bin/env sh
 set -e
 
-output=$(detect-secrets scan)
+detect-secrets scan > .secrets.baseline
 
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
-echo $output
-echo $output > "./.secrets.baseline"
-cat "./.secrets.baseline"
-echo $output >> $GITHUB_OUTPUT
+cat .secrets.baseline
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
 
-lines=$(echo $output | jq '.results' | wc -l)
+lines=$(cat .secrets.baseline | jq '.results' | wc -l)
 
 if [ "$lines" -gt 1 ]; then
     echo "Secret Check Failed"
