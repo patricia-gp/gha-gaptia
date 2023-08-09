@@ -1,0 +1,12 @@
+# action.yml
+name: "Secret Detector"
+description: "Use Yelp's detect-secrets package to scan your repository for exposed secrets"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+branding:
+  icon: "lock"
+  color: "gray-dark"
+outputs:
+  output:
+    description: 'Scan Result'
