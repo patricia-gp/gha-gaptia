@@ -28,10 +28,10 @@ jobs:
         with:
           generator: java
           config-file: gaptia-rest.yml
-          outputDir: target/gaptia-client-java
+          outputDir: generator/gaptia-rest-client
 
       # Do something with the generated client (likely publishing it somewhere)
       - name: Do something with the client
         run: |
-          cd target/gaptia-client-java
-          ls -l
+          cd generator/gaptia-rest-client
+          ls -la
