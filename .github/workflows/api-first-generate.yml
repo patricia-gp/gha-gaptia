@@ -10,9 +10,11 @@ jobs:
   openapi:
 
     # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
-    container:
-      image: ubuntu:20.04
+    #runs-on: ubuntu-20.04
+    #container:
+    #  image: ubuntu:20.04
+      
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -24,11 +26,31 @@ jobs:
       # Use the action to generate a client package
       # This uses the default path for the openapi document and thus assumes there is an openapi.json in the current workspace.
       - name: Generate Client & Stub Java
-        uses: openapi-generators/openapitools-generator-action@v1
+        uses: openapi-generators/openapitools-generator-action@v1.3.0
         with:
           generator: java
           openapi-file: apis/gaptia-rest.yml
-
+          generator-tag: latest-release
+          
+      - name: Create artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: generated-client
+          path: java-client/
+          
+      - name: Set up JDK 18
+        uses: actions/setup-java@v3
+        with:
+          java-version: '18'
+          distribution: adopt
+          
+      - name: Cache local Maven repository
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
       # Do something with the generated client (likely publishing it somewhere)
       - name: Do something with the client
