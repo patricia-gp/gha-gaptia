@@ -8,6 +8,4 @@ COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
-ENV SECRET_BASELINE_FILE="./.secrets.baseline"
-
 ENTRYPOINT ["/entrypoint.sh"]
