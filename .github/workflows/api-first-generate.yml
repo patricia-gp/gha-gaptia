@@ -27,11 +27,11 @@ jobs:
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: java
-          config-file: gaptia-rest.yml
-          outputDir: generator/gaptia-rest-client
+          config-file: apis/*.yml
+          outputDir: generator/java-clients
 
       # Do something with the generated client (likely publishing it somewhere)
       - name: Do something with the client
         run: |
-          cd generator/gaptia-rest-client
+          cd generator/java-clients
           ls -la
