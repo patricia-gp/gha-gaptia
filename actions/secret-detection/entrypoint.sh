@@ -1,11 +1,12 @@
 #!/usr/bin/env sh
 set -e
 
-detect-secrets scan > $SECRET_BASELINE_FILE
+output=$(detect-secrets scan)
 
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
-#echo "::set-output name=output-scan::$output"
-echo "output-scan=$SECRET_BASELINE_FILE" >> $GITHUB_OUTPUT
+echo $output > "./.secrets.baseline"
+echo "::set-output name=output-scan::$output"
+#echo "output-scan=$SECRET_BASELINE_FILE" >> $GITHUB_OUTPUT
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
 
 lines=$(echo $SECRET_BASELINE_FILE | jq '.results' | wc -l)
