@@ -25,5 +25,17 @@ jobs:
       - name: Generate API-First with OpenAPI
         run: docker build -t my-api-generator .
 
-      - name: Generate API
-        uses: patricia-gp/gha-gaptia/actions/api-first-generate@main
+      # Use the action to generate a client package
+      # This uses the default path for the openapi document and thus assumes there is an openapi.json in the current workspace.
+      - name: Generate Client & Stub Java
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: java
+          config-file: gaptia-rest.yml
+          outputDir: target/gaptia-client-java
+
+      # Do something with the generated client (likely publishing it somewhere)
+      - name: Do something with the client
+        run: |
+          cd target/gaptia-client-java
+          ls -l
