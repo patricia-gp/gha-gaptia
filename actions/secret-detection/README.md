@@ -6,5 +6,5 @@ This github action scans a repository usuing Yelp's [Detect Secrets](https://git
 
 ```
 - name: Detect Secrets
-  uses: patricia-gp/detect-secrets-action@main
+  uses: patricia-gp/gha-gaptia/actions/secret-detection@main
 ```
