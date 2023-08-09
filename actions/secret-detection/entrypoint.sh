@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-output=$(cat poc-output.txt)
+output=$(detect-secrets scan)
 
 lines=$(echo $output | jq '.results' | wc -l)
 
