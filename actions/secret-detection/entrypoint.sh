@@ -9,7 +9,7 @@ echo "::set-output name=output-scan::$output"
 #echo "output-scan=$SECRET_BASELINE_FILE" >> $GITHUB_OUTPUT
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
 
-lines=$(echo $SECRET_BASELINE_FILE | jq '.results' | wc -l)
+lines=$(echo $output | jq '.results' | wc -l)
 
 if [ "$lines" -gt 1 ]; then
     echo "Secret Check Failed"
