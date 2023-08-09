@@ -27,11 +27,9 @@ jobs:
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: java
-          config-file: apis/*.yml
-          outputDir: generator/java-clients
+          openapi-file: apis/*.yml
 
       # Do something with the generated client (likely publishing it somewhere)
       - name: Do something with the client
         run: |
-          cd generator/java-clients
-          ls -la
+          ls -Rla
