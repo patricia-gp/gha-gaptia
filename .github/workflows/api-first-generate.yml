@@ -19,11 +19,11 @@ jobs:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
         uses: actions/checkout@v3.5.3
         
-      - name: Set up Java 17
+      - name: Set up Java 11
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '11'
           
       # Use the action to generate a client package
       # This uses the default path for the openapi document and thus assumes there is an openapi.json in the current workspace.
@@ -32,8 +32,7 @@ jobs:
         with:
           generator: spring
           openapi-file: apis/gaptia-rest.yml
-          command-args: -o target
-          
+          command-args: -o target --group-id org.gaptia -artifact-id app-gaptia --package-name app-gaptia --version 1.0.0-SNAPSHOT
       - name: List
         run: |
           cd target
