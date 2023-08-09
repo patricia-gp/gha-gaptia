@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 set -e
 
-output=$(detect-secrets scan)
-#> .secrets.baseline
+detect-secrets scan > .secrets.baseline
+output=$(cat .secrets.baseline)
 
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
 echo $output
