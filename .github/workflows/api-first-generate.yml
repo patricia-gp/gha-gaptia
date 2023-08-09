@@ -21,30 +21,24 @@ jobs:
           
       # Use the action to generate a client package
       # This uses the default path for the openapi document and thus assumes there is an openapi.json in the current workspace.
-      - name: Generate Client & Stub Java
-        uses: openapi-generators/openapitools-generator-action@v1.3.0
+      - name: Generate Client & Stub SNAPSHOT (only develop)
+        if: github.ref == 'refs/heads/develop'
+        uses: openapi-generators/openapitools-generator-action@v1.2.0
         with:
-          generator: java
+          generator: spring
+          openapi-file: apis/gaptia-rest.yml
+          command-args: -p snapshotVersion=true -t /github/workspace/templates/spring-boot
+          
+      - name: Generate Client & Stub SNAPSHOT (only main)
+        if: github.ref == 'refs/heads/main'
+        uses: openapi-generators/openapitools-generator-action@v1.2.0
+        with:
+          generator: spring
           openapi-file: apis/gaptia-rest.yml
           generator-tag: latest-release
-                  
-      - name: Create artifact SNAPSHOT (only develop)        
-        if: github.ref == 'refs/heads/develop'
-        uses: actions/upload-artifact@v3
-        with:
-          name: generated-client
-          path: gaptia-rest-client/        
-          command-args: -p snapshotVersion=true -t /github/workspace/templates/spring-boot
-                            
-      - name: Create artifact STABLE (only main)
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v3
-        with:
-          name: generated-client
-          path: spring-client/        
           command-args: -t /github/workspace/templates/spring-boot
 
-      - name: Tag version
+      - name: Tag version (only main)
         if: github.ref == 'refs/heads/main'
         uses: butlerlogic/action-autotag@stable
         with:
