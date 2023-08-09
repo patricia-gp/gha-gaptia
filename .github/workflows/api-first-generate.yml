@@ -20,11 +20,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
         uses: actions/checkout@v3.5.3
-        
-      # Do something with the generated client (likely publishing it somewhere)
-      - name: Do something with the client
-        run: |
-          ls -Rla
+          
+      # Preview install OpenAPI
+      - name: Preview install OpenAPI
+        uses: patricia-gp/gha-gaptia/actions/api-first-generate@main
 
       # Use the action to generate a client package
       # This uses the default path for the openapi document and thus assumes there is an openapi.json in the current workspace.
