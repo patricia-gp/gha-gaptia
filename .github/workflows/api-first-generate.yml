@@ -24,10 +24,10 @@ jobs:
       # Use the action to generate a client package
       # This uses the default path for the openapi document and thus assumes there is an openapi.json in the current workspace.
       - name: Generate Client & Stub Java
-        uses: patricia-gp/gha-gaptia/actions/api-first-generate@main
+        uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: java
-          openapi-file: apis/*.yml
+          config-file: apis/*.yml
 
       # Do something with the generated client (likely publishing it somewhere)
       - name: Do something with the client
