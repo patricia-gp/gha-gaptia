@@ -36,7 +36,9 @@ jobs:
           
       - name: List
         run: |
+          cd target
           ls -Rl
+          cat pom.xml
 
       - name: Tag version (only main)
         if: github.ref == 'refs/heads/main-xxx'
