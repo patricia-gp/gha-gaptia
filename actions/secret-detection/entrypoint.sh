@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
 set -e
 
-output=$(detect-secrets scan)
+detect-secrets scan > $SECRET_BASELINE_FILE
 
-echo ".---------------------------------------------------------------------------------------------------------------------------------------------"
-echo "::set-output name=output-scan::$output"
-#echo "output-scan=$output" >> $GITHUB_OUTPUT
-echo ".---------------------------------------------------------------------------------------------------------------------------------------------"
+echo "---------------------------------------------------------------------------------------------------------------------------------------------"
+#echo "::set-output name=output-scan::$output"
+echo "output-scan=$SECRET_BASELINE_FILE" >> $GITHUB_OUTPUT
+echo "---------------------------------------------------------------------------------------------------------------------------------------------"
 
-lines=$(echo $output | jq '.results' | wc -l)
+lines=$(echo $SECRET_BASELINE_FILE | jq '.results' | wc -l)
 
 if [ "$lines" -gt 1 ]; then
     echo "Secret Check Failed"
