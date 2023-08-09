@@ -38,7 +38,7 @@ jobs:
             --artifact-id app-gaptia 
             --package-name app-gaptia
             --api-package org.gaptia
-            --additional-properties=java.version=11
+            --additional-properties=javaVersion=11,snapshotVersion=true
       - name: List
         run: |
           cd target
