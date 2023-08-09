@@ -34,9 +34,9 @@ jobs:
           openapi-file: apis/gaptia-rest.yml
           command-args: -o target
           
-      - name: PList
+      - name: List
         run: |
-          ls -Rla
+          ls -Rl
 
       - name: Tag version (only main)
         if: github.ref == 'refs/heads/main-xxx'
