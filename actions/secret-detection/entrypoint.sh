@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env sh
 set -e
 
 output=$(cat poc-output.txt)
