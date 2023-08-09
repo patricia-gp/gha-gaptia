@@ -27,7 +27,8 @@ jobs:
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: java
-          config-file: apis/*.yml
+          openapi-file: apis/gaptia-rest.yml
+
 
       # Do something with the generated client (likely publishing it somewhere)
       - name: Do something with the client
