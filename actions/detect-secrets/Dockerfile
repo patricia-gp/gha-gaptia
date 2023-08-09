@@ -6,4 +6,6 @@ RUN apk add jq
 
 COPY entrypoint.sh /entrypoint.sh
 
+RUN ls -la
+
 ENTRYPOINT ["/entrypoint.sh"]
