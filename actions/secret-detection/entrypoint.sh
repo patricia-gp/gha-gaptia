@@ -3,7 +3,7 @@ set -e
 
 output=$(detect-secrets scan)
 
-echo "::set-output name=output::$output"
+echo "::set-output name=output-scan::$output"
 
 lines='echo $output | jq .results | wc -l'
 
