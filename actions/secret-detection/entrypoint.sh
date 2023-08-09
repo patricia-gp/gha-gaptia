@@ -1,11 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/bash
 set -e
 
-output=$(detect-secrets scan)
+output=$(cat poc-output.txt)
 
-echo "::set-output name=output-scan::$output"
-
-lines='echo $output | jq .results | wc -l'
+lines=$(echo $output | jq '.results' | wc -l)
 
 if [ "$lines" -gt 1 ]; then
     echo "Secret Check Failed"
