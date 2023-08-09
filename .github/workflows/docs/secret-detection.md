@@ -1,4 +1,4 @@
-## Secret Dection Action - Example usage
+## Secret Detection Action - Example usage
 
 ```
 name: Secret Detection
