@@ -32,7 +32,7 @@ jobs:
         with:
           generator: spring
           openapi-file: apis/gaptia-rest.yml
-          command-args: ^
+          command-args: >
             --output target 
             --group-id org.gaptia 
             --artifact-id app-gaptia 
