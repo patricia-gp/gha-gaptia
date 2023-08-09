@@ -21,30 +21,20 @@ jobs:
           
       # Use the action to generate a client package
       # This uses the default path for the openapi document and thus assumes there is an openapi.json in the current workspace.
-      - name: Generate Client & Stub SNAPSHOT (only develop)
-        if: github.ref == 'refs/heads/develop'
-        uses: openapi-generators/openapitools-generator-action@v1.2.0
+      - name: Generate Client & Stub
+        uses: openapi-generators/openapitools-generator-action@v1.5.0
         with:
           generator: spring
           openapi-file: apis/gaptia-rest.yml
-          command-args: -p snapshotVersion=true -t /github/workspace/templates/spring-boot
-          
-      - name: Generate Client & Stub SNAPSHOT (only main)
-        if: github.ref == 'refs/heads/main'
-        uses: openapi-generators/openapitools-generator-action@v1.2.0
-        with:
-          generator: spring
-          openapi-file: apis/gaptia-rest.yml
-          generator-tag: latest-release
-          command-args: -t /github/workspace/templates/spring-boot
+          command-args: -o target
 
       - name: Tag version (only main)
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main-xxx'
         uses: butlerlogic/action-autotag@stable
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           strategy: regex
-          root: /github/workspace/spring-client/pom.xml
+          root: target/pom.xml
           regex_pattern: '<version>([^<]+)<'
           
       - name: Set up Java for publishing to GitHub Packages
@@ -55,7 +45,7 @@ jobs:
 
       - name: Publish to GitHub Packages
         run: |
-          cd spring-client
+          cd target
           mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
