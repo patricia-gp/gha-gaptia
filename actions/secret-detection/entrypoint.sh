@@ -4,8 +4,7 @@ set -e
 output=$(detect-secrets scan)
 
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
-echo $output > "./.secrets.baseline"
-echo "::set-output name=output-scan::$output"
+cat ./.secrets.baseline
 #echo "output-scan=$SECRET_BASELINE_FILE" >> $GITHUB_OUTPUT
 echo "---------------------------------------------------------------------------------------------------------------------------------------------"
 
