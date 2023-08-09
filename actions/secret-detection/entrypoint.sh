@@ -3,7 +3,7 @@ set -e
 
 output=$(detect-secrets scan)
 
-echo "output-scan=$output" >> $GITHUB_OUTPUT
+echo "output-scan:$output" >> $GITHUB_OUTPUT
 
 lines=$(echo $output | jq '.results' | wc -l)
 
