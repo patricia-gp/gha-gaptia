@@ -73,4 +73,4 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           cd target
-          mvn deploy      
+          mvn deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/patricia-gp/app-gaptia  
