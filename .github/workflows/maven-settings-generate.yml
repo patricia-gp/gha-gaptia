@@ -7,7 +7,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+
+  settings:
     runs-on: ubuntu-latest
     steps:
     - name: Generate settings.xml for Maven Builds
