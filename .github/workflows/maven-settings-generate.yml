@@ -2,7 +2,7 @@
 name: Maven Settings Generate
 
 on:
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
 
