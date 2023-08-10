@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Generate settings.xml for Maven Builds
-      uses: whelk-io/maven-settings-xml-action@v21
+      uses: whelk-io/maven-settings-xml-action@v20
       with:
         profiles: >
-          [
+          '[
             {
               "id": "gaptia-profile",
             }
-          ]
+          ]'
         repositories: >
-          [
+          '[
             {
               "id": "central"
               "url": "https://repo1.maven.org/maven2"
@@ -28,29 +28,35 @@ jobs:
               "id": "app-gaptia
               "url": "https://maven.pkg.github.com/patricia-gp/app-package",
             }
-          ]
+          ]'
+        plugin_repositories: >
+          '[
+            {
+              "id": "central"
+              "url": "https://repo1.maven.org/maven2"
+            },
+            {
+              "id": "app-gaptia
+              "url": "https://maven.pkg.github.com/patricia-gp/app-package",
+            }
+          ]'
         servers: >
-          [
+          '[
             {
               "id": "github",
               "username": "${env.USER}",
               "password": "${env.PASS}"
             }
-          ]
+          ]'
         mirrors: >
-          [
+         '[
             {
               "id": app-gaptia",
               "mirrorOf": "*",
               "url": "https://maven.pkg.github.com/patricia-gp/app-package"
             }
-          ]
+          ]'
         active_profiles: >
-          [
+         '[
             "gaptia-profile"
-          ]
-        output_file: .m2/settings.xml
-        
-    - name: View .m2/settings.xml
-      run: |
-        cat .m2/settings.xml
+          ]'
