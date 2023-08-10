@@ -60,7 +60,6 @@ jobs:
           java-version: '11'
           
       - name: Publish Packages
-        if: github.ref == 'refs/heads/main'
         run: |
           cd target
           mvn deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/patricia-gp/app-gaptia  
