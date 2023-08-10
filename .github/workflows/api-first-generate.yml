@@ -27,7 +27,8 @@ jobs:
           
       # Use the action to generate a client package
       # This uses the default path for the openapi document and thus assumes there is an openapi.json in the current workspace.
-      - name: Generate Client & Stub
+      - name: Generate Client & Stub version SNAPSHOST (only develop)
+        if: github.ref == 'refs/heads/develop'
         uses: openapi-generators/openapitools-generator-action@v1.5.0
         with:
           generator: spring
@@ -38,15 +39,27 @@ jobs:
             --artifact-id app-gaptia 
             --package-name app-gaptia
             --api-package org.gaptia
-            --additional-properties=javaVersion=11,snapshotVersion=true
-      - name: List
+            --additional-properties=snapshotVersion=true
+            
+      - name: Generate Client & Stub version STABLE (only main)
+        if: github.ref == 'refs/heads/main'
+        uses: openapi-generators/openapitools-generator-action@v1.5.0
+        with:
+          generator: spring
+          openapi-file: apis/gaptia-rest.yml
+          command-args: >
+            --output target 
+            --group-id org.gaptia 
+            --artifact-id app-gaptia 
+            --package-name app-gaptia
+            --api-package org.gaptia
+            --additional-properties=snapshotVersion=false
+            
+      - name: View pom.xml
         run: |
-          cd target
-          ls -Rl
-          cat pom.xml
+          cat target/pom.xml
 
-      - name: Tag version (only main)
-        if: github.ref == 'refs/heads/main-xxx'
+      - name: Tag Version
         uses: butlerlogic/action-autotag@stable
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -54,8 +67,8 @@ jobs:
           root: target/pom.xml
           regex_pattern: '<version>([^<]+)<'
 
-      - name: Publish to GitHub Packages
-        if: github.ref == 'refs/heads/main-xxx'
+      - name: Publish Packages
+        if: github.ref == 'refs/heads/main'
         run: |
           cd target
           mvn deploy
