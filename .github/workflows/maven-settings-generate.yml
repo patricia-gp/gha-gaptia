@@ -36,6 +36,6 @@ jobs:
             }
           ]        
     
-    - name: Download settings.xml
+    - name: View settings.xml
       run: |
         cat .m2/settings.xml
