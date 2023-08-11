@@ -14,16 +14,8 @@ jobs:
       uses: whelk-io/maven-settings-xml-action@v21
       with:
         output_file: .m2/settings.xml
-        active_profiles: >
-          [
-            "gaptia"
-          ]
-        profiles: >
-          [
-            {
-              "id": "gaptia"
-            }
-          ]
+        active_profiles: '[ "gaptia" ]'
+        profiles: '[ { "id": "gaptia" } ]'
         servers: >
           [
             {
@@ -44,6 +36,6 @@ jobs:
             }
           ]        
     
-    - name: View settings.xml
+    - name: Download settings.xml
       run: |
         cat .m2/settings.xml
