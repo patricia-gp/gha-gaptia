@@ -14,12 +14,12 @@ jobs:
       uses: whelk-io/maven-settings-xml-action@v21
       with:
         output_file: .m2/settings.xml
-        active_profiles: '[ "gaptia-github" ]'
-        profiles: '[ { "id": "gaptia-github" } ]'
+        active_profiles: '[ "github" ]'
+        profiles: '[ { "id": "github" } ]'
         servers: >
           [
             {
-              "id": "gaptia-github",
+              "id": "github",
               "username": "${{ github.ACTOR }}",
               "password": "${{ secrets.GITHUB_TOKEN }}"
             }
