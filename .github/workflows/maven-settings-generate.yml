@@ -15,7 +15,6 @@ jobs:
       with:
         output_file: .m2/settings.xml
         active_profiles: '[ "github" ]'
-        profiles: '[ { "id": "github" } ]'
         servers: >
           [
             {
