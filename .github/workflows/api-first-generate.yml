@@ -21,10 +21,12 @@ jobs:
           generator: spring
           openapi-file: apis/gaptia-rest.yml
           command-args: >
-            --output target 
-            --artifact-id app-gaptia
-            --group-id org.gaptia.app
-            --additional-properties=snapshotVersion=true
+            --output target \
+            --artifact-id app-gaptia \
+            --group-id org.gaptia.app \
+            --additional-properties=snapshotVersion=true,library=spring-boot,beanValidations=true,serviceImplementation=true \
+            --import-mappings=DateTime=java.time.LocalDateTime \
+            --type-mappings=DateTime=java.time.LocalDateTime
             
       - name: Generate Client & Stub version STABLE (only main)
         if: github.ref == 'refs/heads/main'
@@ -33,10 +35,12 @@ jobs:
           generator: spring
           openapi-file: apis/gaptia-rest.yml
           command-args: >
-            --output target 
-            --artifact-id app-gaptia
-            --group-id org.gaptia.app
-            --additional-properties=snapshotVersion=false
+            --output target \
+            --artifact-id app-gaptia \
+            --group-id org.gaptia.app \
+            --additional-properties=snapshotVersion=false,library=spring-boot,beanValidations=true,serviceImplementation=true \
+            --import-mappings=DateTime=java.time.LocalDateTime \
+            --type-mappings=DateTime=java.time.LocalDateTime
             
       - name: View pom.xml
         run: |
