@@ -27,6 +27,8 @@ jobs:
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
+        env:
+          GITHUB_TOKEN: ${{ github.token }} 
         with:
           strategy: regex
           root: target/maven-archiver/pom.properties
