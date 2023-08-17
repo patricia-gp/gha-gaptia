@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 env:
-  GITHUB_TOKEN: ${{ github.token }}     
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
 
@@ -22,8 +22,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
   
       - name: Build with Maven
         run: mvn -B package
@@ -36,6 +34,4 @@ jobs:
           regex_pattern: 'version=(\S.*)'
   
       - name: Publish Packages
-        run: |
-          cd target
-          mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/patricia-gp/app-gaptia  
+        run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/patricia-gp/app-gaptia  
