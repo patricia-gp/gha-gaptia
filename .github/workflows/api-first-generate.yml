@@ -23,9 +23,7 @@ jobs:
           command-args: >
             --output target 
             --artifact-id app-gaptia
-            --group-id org.gaptia.app.api
-            --package-name org.gaptia.app.api
-            --api-package org.gaptia.app.api
+            --group-id org.gaptia.app
             --additional-properties=snapshotVersion=true
             
       - name: Generate Client & Stub version STABLE (only main)
@@ -37,9 +35,7 @@ jobs:
           command-args: >
             --output target 
             --artifact-id app-gaptia
-            --group-id org.gaptia.app.api
-            --package-name org.gaptia.app.api
-            --api-package org.gaptia.app.api
+            --group-id org.gaptia.app
             --additional-properties=snapshotVersion=false
             
       - name: View pom.xml
