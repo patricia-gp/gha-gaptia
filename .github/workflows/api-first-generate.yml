@@ -32,4 +32,4 @@ jobs:
           regex_pattern: 'version=(\S.*)'
   
       - name: Publish Packages
-        run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/patricia-gp/app-gaptia  
+        run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
