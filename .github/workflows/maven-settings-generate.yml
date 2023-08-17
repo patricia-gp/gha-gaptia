@@ -30,7 +30,7 @@ jobs:
               "url": "https://repo1.maven.org/maven2"
             },
             {
-              "id": "app-gaptia",
+              "id": "github",
               "url": "https://maven.pkg.github.com/patricia-gp/app-gaptia"
             }
           ]        
