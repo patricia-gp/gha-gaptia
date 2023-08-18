@@ -5,6 +5,7 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NOW: $(date +'%Y-%m-%dT%H:%M:%S')
 
 jobs:
 
@@ -30,7 +31,7 @@ jobs:
           strategy: regex
           root: target/maven-archiver/pom.properties
           regex_pattern: 'version=(\S.*)'
-          tag_suffix: " ($(date +'%Y-%m-%d %H:%M:%S'))"
+          tag_suffix: " ( ${{ NOW }} )"
   
       - name: Publish Packages
         run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
