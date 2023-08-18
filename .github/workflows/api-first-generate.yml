@@ -31,7 +31,7 @@ jobs:
           strategy: regex
           root: target/maven-archiver/pom.properties
           regex_pattern: 'version=(\S.*)'
-          tag_suffix: " ( ${{ NOW }} )"
+          tag_suffix: " ( ${{ env.NOW }} )"
   
       - name: Publish Packages
         run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
