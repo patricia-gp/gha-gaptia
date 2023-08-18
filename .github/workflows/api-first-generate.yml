@@ -30,7 +30,7 @@ jobs:
           strategy: regex
           root: target/maven-archiver/pom.properties
           regex_pattern: 'version=(\S.*)'
-          tag_suffix: " (${{ github.event.repository.updated_at}})"
+          tag_suffix: " (${{ GITHUB_RUN_STARTED_AT }})"
   
       - name: Publish Packages
         run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
