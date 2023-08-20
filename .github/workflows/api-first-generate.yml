@@ -21,8 +21,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
   
-      - name: Build with Maven
-        run: mvn -B package
+      - name: Build with Publish
+        run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
@@ -30,6 +30,3 @@ jobs:
           strategy: regex
           root: target/maven-archiver/pom.properties
           regex_pattern: 'version=(\S.*)'
-  
-      - name: Publish Packages
-        run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
