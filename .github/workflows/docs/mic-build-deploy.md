@@ -1,7 +1,7 @@
-## API First Generate Action - Example usage
+## Microservice Build & Deploy Action - Example usage
 
 ```
-name: API First Generate
+name: Microservice Build & Deploy
 
 # Controls when the workflow will run
 on:
@@ -16,5 +16,5 @@ on:
 jobs:
 
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/api-first-generate.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/mic-build-deploy.yml@main
 ```
