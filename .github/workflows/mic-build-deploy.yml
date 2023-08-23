@@ -8,7 +8,7 @@ env:
 
 jobs:
 
-  api:
+  mic:
     runs-on: ubuntu-latest
 
     steps:
