@@ -31,7 +31,7 @@ jobs:
 
       - name: View settings.xml
         run: |
-          cat ~/.m2/settings.xml
+          grep password ~/.m2/settings.xml
 
       - name: Build with Maven
         run: mvn -B deploy
