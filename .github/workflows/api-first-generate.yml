@@ -21,7 +21,7 @@ jobs:
           distribution: 'temurin'
   
       - name: Build with Deploy
-        run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
+        run: mvn -B deploy -DaltDeploymentRepository=github::https://maven.pkg.github.com/${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
