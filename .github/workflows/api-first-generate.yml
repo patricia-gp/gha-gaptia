@@ -23,7 +23,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
   
-      - name: Build with Publish
+      - name: Build with Deploy
         run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
 
       - name: Tag Version

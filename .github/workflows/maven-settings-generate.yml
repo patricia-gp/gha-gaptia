@@ -42,7 +42,7 @@ jobs:
         cat .m2/settings.xml
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        name: .m2
-        path: .m2
+        name: maven-settings
+        path: .m2/settings.xml
