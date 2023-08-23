@@ -39,10 +39,11 @@ jobs:
     
     - name: View settings.xml
       run: |
+        ls -la
         cat .m2/settings.xml
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: .m2/settings.xml
-        path: .m2/settings.xml
+        name: .m2
+        path: .m2
