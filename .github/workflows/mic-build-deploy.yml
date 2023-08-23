@@ -30,4 +30,7 @@ jobs:
           path: ~/.m2
 
       - name: Build with Maven
+        env:
+          MAVEN_USERNAME: ${{ github.ACTOR }}
+          MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: mvn -B deploy
