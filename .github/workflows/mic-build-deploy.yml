@@ -27,6 +27,7 @@ jobs:
           path: ~/.m2
 
       - name: Build with Maven
-        run: mvn -B deploy
+        run: mvn -B deploy -s ~/.m2/settings.xml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAVEN_USER: ${{ secrets.MAVEN_USER }}
+          MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
