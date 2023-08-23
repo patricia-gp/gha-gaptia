@@ -20,8 +20,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
   
-      - name: Build with Install
-        run: mvn -B install
+      - name: Build with Deploy
+        run: mvn -B deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
