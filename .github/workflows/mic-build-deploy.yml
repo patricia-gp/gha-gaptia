@@ -31,8 +31,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B deploy
-        with:
-          settings: ~/.m2/settings.xml
-          server-id: github
-          server-username: ${{ github.ACTOR }}
-          server-password: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          github-username: ${{ github.ACTOR }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
