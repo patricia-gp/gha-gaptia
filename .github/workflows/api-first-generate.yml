@@ -22,8 +22,6 @@ jobs:
   
       - name: Build with Deploy
         run: mvn -B deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
