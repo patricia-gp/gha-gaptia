@@ -27,7 +27,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: maven-settings
-          path: ~
+          path: ~/.m2
 
       - name: View settings.xml
         run: |
