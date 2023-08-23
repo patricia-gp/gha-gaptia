@@ -39,7 +39,6 @@ jobs:
     
     - name: View settings.xml
       run: |
-        ls -la
         cat .m2/settings.xml
 
     - name: Upload artifact
