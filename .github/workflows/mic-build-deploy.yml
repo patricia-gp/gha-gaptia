@@ -23,7 +23,7 @@ jobs:
       - name: Settings Maven
         uses: whelk-io/maven-settings-xml-action@v21
         with:
-          output_file: ~/.m2/settings.xml
+          output_file: settings.xml
           active_profiles: '[ "github" ]'
           servers: >
             [
@@ -46,4 +46,4 @@ jobs:
             ]   
 
       - name: Build with Maven
-        run: mvn -B deploy -s ~/.m2/settings.xml
+        run: mvn -B deploy -s settings.xml
