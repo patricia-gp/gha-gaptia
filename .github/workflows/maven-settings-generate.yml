@@ -14,17 +14,15 @@ jobs:
     
     - name: Generate settings.xml for Maven Builds
       uses: whelk-io/maven-settings-xml-action@v21
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        output_file: .m2/settings.xml
+        output_file: ~/.m2/settings.xml
         active_profiles: '[ "github" ]'
         servers: >
           [
             {
               "id": "github",
-              "username": "${env.MAVEN_USER}",
-              "password": "{env.MAVEN_TOKEN}"
+              "username": "${{ github.ACTOR }}",
+              "password": "PERSONAL_ACCESS_TOKEN"
             }
           ]
         repositories: >
@@ -41,10 +39,4 @@ jobs:
     
     - name: View settings.xml
       run: |
-        cat .m2/settings.xml
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: maven-settings
-        path: .m2
+        cat ~/.m2/settings.xml

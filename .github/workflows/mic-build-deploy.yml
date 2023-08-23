@@ -20,14 +20,30 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Download artifact
-        uses: actions/download-artifact@v3
+      - name: Settings Maven
+        uses: whelk-io/maven-settings-xml-action@v21
         with:
-          name: maven-settings
-          path: ~/.m2
+          output_file: ~/.m2/settings.xml
+          active_profiles: '[ "github" ]'
+          servers: >
+            [
+              {
+                "id": "github",
+                "username": "${{ secrets.MAVEN_USER }}",
+                "password": "${{ secrets.MAVEN_TOKEN }}"
+              }
+            ]
+          repositories: >
+            [
+              {
+                "id": "central",
+                "url": "https://repo1.maven.org/maven2"
+              },
+              {
+                "id": "github",
+                "url": "https://maven.pkg.github.com/patricia-gp/api-gaptia"
+              }
+            ]   
 
       - name: Build with Maven
         run: mvn -B deploy -s ~/.m2/settings.xml
-        env:
-          MAVEN_USER: ${{ secrets.MAVEN_USER }}
-          MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
