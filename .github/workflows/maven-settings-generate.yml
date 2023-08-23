@@ -43,7 +43,6 @@ jobs:
     - name: View settings.xml
       run: |
         cat .m2/settings.xml
-        echo "aaa${{ secrets.GITHUB_TOKEN }}bbb"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
