@@ -3,7 +3,7 @@ name: Maven Settings Generate
 
 on:
   workflow_call:
-  
+
   workflow_dispatch:
 
 jobs:
@@ -40,3 +40,9 @@ jobs:
     - name: View settings.xml
       run: |
         cat .m2/settings.xml
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: .m2/settings.xml
+        path: .m2/settings.xml
