@@ -3,9 +3,6 @@ name: API First Generate
 on:
   workflow_call:
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
 
   api:
@@ -25,9 +22,13 @@ jobs:
   
       - name: Build with Deploy
         run: mvn -B deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           strategy: regex
           root: target/maven-archiver/pom.properties

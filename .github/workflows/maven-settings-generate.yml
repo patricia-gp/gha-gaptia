@@ -6,9 +6,6 @@ on:
 
   workflow_dispatch:
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
 
   repository:
@@ -17,6 +14,8 @@ jobs:
     
     - name: Generate settings.xml for Maven Builds
       uses: whelk-io/maven-settings-xml-action@v21
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         output_file: .m2/settings.xml
         active_profiles: '[ "github" ]'
