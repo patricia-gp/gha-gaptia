@@ -20,30 +20,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Settings Maven
-        uses: whelk-io/maven-settings-xml-action@v21
-        with:
-          output_file: settings.xml
-          active_profiles: '[ "github" ]'
-          servers: >
-            [
-              {
-                "id": "github",
-                "username": "${{ secrets.MAVEN_USER }}",
-                "password": "${{ secrets.MAVEN_TOKEN }}"
-              }
-            ]
-          repositories: >
-            [
-              {
-                "id": "central",
-                "url": "https://repo1.maven.org/maven2"
-              },
-              {
-                "id": "github",
-                "url": "https://maven.pkg.github.com/patricia-gp/api-gaptia"
-              }
-            ]   
-
       - name: Build with Maven
-        run: mvn -B deploy -s settings.xml
+        run: mvn -B deploy -DaltDeploymentRepository=github::https://maven.pkg.github.com/api-gaptia
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
