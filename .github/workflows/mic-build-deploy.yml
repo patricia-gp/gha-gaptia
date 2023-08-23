@@ -21,6 +21,6 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        run: mvn -B deploy -DaltDeploymentRepository=github::https://maven.pkg.github.com/api-gaptia
+        run: mvn -B deploy -DaltDeploymentRepository=github::https://maven.pkg.github.com/patricia-gp/api-gaptia
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
