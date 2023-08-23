@@ -23,8 +23,8 @@ jobs:
           [
             {
               "id": "github",
-              "username": "${env.github-username}",
-              "password": "${env.github-token}"
+              "username": "${{ github.ACTOR }}",
+              "password": "${{ secrets.GITHUB_TOKEN }}"
             }
           ]
         repositories: >

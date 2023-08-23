@@ -19,12 +19,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: maven-settings
-          path: ~/.m2
+          server-id: github
 
       - name: Build with Maven
         run: mvn -B deploy
