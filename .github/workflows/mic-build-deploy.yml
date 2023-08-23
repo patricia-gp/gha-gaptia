@@ -27,10 +27,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: maven-settings
+          path: ~
 
       - name: View settings.xml
         run: |
-          ls -la -R .m2
+          ls -Rla ~
 
       - name: Build with Maven
         run: mvn -B deploy
