@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  settings:
+  repository:
     runs-on: ubuntu-latest
     steps:
     
