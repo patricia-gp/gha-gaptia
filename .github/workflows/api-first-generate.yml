@@ -20,13 +20,9 @@ jobs:
   
       - name: Build with Deploy
         run: mvn -B deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           strategy: regex
           root: target/maven-archiver/pom.properties
