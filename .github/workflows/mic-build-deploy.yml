@@ -20,13 +20,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Resolve dependencies
-        run: mvn dependency:resolve
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Compile
         run: mvn -B clean compile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Unit Test
         run: mvn -B test
