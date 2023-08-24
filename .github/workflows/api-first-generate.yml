@@ -3,11 +3,6 @@ name: API First Generate
 on:
   workflow_call:
 
-env:
-  MAVEN_USER: ${{ secrets.MAVEN_USER }}
-  MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   api:
     runs-on: ubuntu-latest
@@ -30,11 +25,6 @@ jobs:
         with:
           name: maven-settings
           path: ${{ github.workspace }}/.m2
-
-      - name: Get version
-        run: |
-          mvn -v
-          cat ${{ github.workspace }}/.m2/settings.xml
   
       - name: Build with Deploy
         run: mvn -B deploy
