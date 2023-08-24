@@ -2,6 +2,9 @@ name: Microservice Spring Unit Test
 
 on:
   workflow_call:
+    input:
+      SONAR_HOST_URL:
+        required: true
 
 jobs:
   mic:
@@ -22,4 +25,4 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: Sonar
-        run: mvn -e -B sonar:sonar -s ${{ github.workspace }}/.m2/settings.xml
+        run: mvn -e -B sonar:sonar -s ${{ github.workspace }}/.m2/settings.xml -Dsonar.host.url=${{ env.SONAR_HOST_URL }}

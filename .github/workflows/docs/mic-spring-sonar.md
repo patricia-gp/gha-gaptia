@@ -15,4 +15,6 @@ on:
 jobs:
  build:
     uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-sonar.yml@main
+    inputs:
+      SONAR_HOST_URL: ${{ SONAR_HOST_URL }}
 ```

@@ -3,7 +3,7 @@ name: Microservice Spring Generate
 on:
   workflow_call:
     secrets:
-      MAVEN_USER:
+      SONAR_HOST_URL:
         required: true
       MAVEN_TOKEN:
         required: true
