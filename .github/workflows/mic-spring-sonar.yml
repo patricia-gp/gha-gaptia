@@ -2,7 +2,7 @@ name: Microservice Spring Unit Test
 
 on:
   workflow_call:
-    input:
+    inputs:
       SONAR_HOST_URL:
         required: true
 
