@@ -22,4 +22,4 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: Integration test
-        run: mvn -e -B verify -DskipTests -Pdocker
+        run: mvn -e -B verify -DskipTests -Pdocker -s ${{ github.workspace }}/.m2/settings.xml

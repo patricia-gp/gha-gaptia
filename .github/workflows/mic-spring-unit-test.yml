@@ -22,4 +22,4 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: Unit test
-        run: mvn -e -B test -DskipTests
+        run: mvn -e -B test -DskipTests -s ${{ github.workspace }}/.m2/settings.xml
