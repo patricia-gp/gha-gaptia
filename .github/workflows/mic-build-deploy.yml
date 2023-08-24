@@ -19,6 +19,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+        env:
+          GITHUB_ACTOR: ${{ github.GITHUB_ACTOR }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get version
         run: |
@@ -42,4 +45,5 @@ jobs:
       - name: Deploy
         run: mvn -B deploy -DskipTests
         env:
+          GITHUB_ACTOR: ${{ github.GITHUB_ACTOR }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
