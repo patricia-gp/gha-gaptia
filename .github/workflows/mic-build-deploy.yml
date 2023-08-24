@@ -22,6 +22,9 @@ jobs:
 
       - name: Download artefactory
         uses: actions/download-artifact@v3
+        env:
+          MAVEN_USER: ${{ secrets.MAVEN_USER }}
+          MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
         with:
           name: maven-settings
           path: ${{ github.workspace }}/.m2
@@ -40,7 +43,7 @@ jobs:
         run: mvn -B test
 
       - name: Package
-        run: mvn -B package -DskipTests --file pom.xml
+        run: mvn -B package -DskipTests
 
       - name: Integration Test
         run: mvn -B verify -Pdocker
