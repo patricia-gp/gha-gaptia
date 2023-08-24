@@ -11,6 +11,9 @@ jobs:
     steps:
     - name: Generate settings.xml for Maven Builds
       uses: whelk-io/maven-settings-xml-action@v21
+      env:
+        GITHUB_ACTOR: ${{ github.ACTOR }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         output_file: settings.xml
         active_profiles: '[ "github" ]'
@@ -18,8 +21,8 @@ jobs:
           [
             {
               "id": "github",
-              "username": "${env.GITHUB_ACTOR}",
-              "password": "${env.GITHUB_TOKEN}"
+              "username": "${{ env.GITHUB_ACTOR }}",
+              "password": "${{ env.GITHUB_TOKEN }}"
             }
           ]
         repositories: >

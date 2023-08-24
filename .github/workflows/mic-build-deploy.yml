@@ -33,9 +33,6 @@ jobs:
 
       - name: Compile
         run: mvn -B clean compile
-        env:
-          GITHUB_ACTOR: ${{ github.ACTOR }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Unit Test
         run: mvn -B test
@@ -48,6 +45,3 @@ jobs:
 
       - name: Deploy
         run: mvn -B deploy -DskipTests -s ${{ github.workspace }}/settings.xml
-        env:
-          GITHUB_ACTOR: ${{ github.ACTOR }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
