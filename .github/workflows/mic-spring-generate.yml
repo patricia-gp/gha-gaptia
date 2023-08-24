@@ -36,13 +36,13 @@ jobs:
           mvn -v
 
       - name: Compile
-        run: mvn -e -B clean compile
+        run: mvn -e -B clean compile -s ${{ github.workspace }}/.m2/settings.xml
 
       - name: Unit Test
-        run: mvn -e -B test
+        run: mvn -e -B test -s ${{ github.workspace }}/.m2/settings.xml
 
       - name: Integration Test
-        run: mvn -e -B verify -Pdocker
+        run: mvn -e -B verify -Pdocker -s ${{ github.workspace }}/.m2/settings.xml
 
       - name: Package
-        run: mvn -e -B package -DskipTests
+        run: mvn -e -B package -DskipTests -s ${{ github.workspace }}/.m2/settings.xml
