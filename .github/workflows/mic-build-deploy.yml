@@ -22,9 +22,6 @@ jobs:
 
       - name: Download artefactory
         uses: actions/download-artifact@v3
-        env:
-          MAVEN_USER: ${{ secrets.MAVEN_USER }}
-          MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
         with:
           name: maven-settings
           path: ${{ github.workspace }}/.m2
