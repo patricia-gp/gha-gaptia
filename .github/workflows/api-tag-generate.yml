@@ -1,4 +1,4 @@
-name: Tag Generate
+name: Api Tag Generate
 
 on:
   workflow_call:
