@@ -1,0 +1,25 @@
+name: Microservice Spring Unit Test
+
+on:
+  workflow_call:
+
+jobs:
+  mic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          server-id: github
+          settings-path: ${{ github.workspace }}/.m2
+
+      - name: Download artefactory
+        uses: actions/download-artifact@v3
+        with:
+          name: mic-project
+          path: ${{ github.workspace }}
+
+      - name: Unit test
+        run: mvn -e -B test -DskipTests

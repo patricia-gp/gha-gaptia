@@ -1,7 +1,7 @@
-## Microservice Spring Test Action - Example usage
+## Microservice Spring Unit Test Action - Example usage
 
 ```
-name: Microservice Spring Test
+name: Microservice Spring Unit Test
 
 # Controls when the workflow will run
 on:
@@ -14,5 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-build-test.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-unit-test.yml@main
 ```

@@ -1,7 +1,7 @@
-## Microservice Spring Generate Action - Example usage
+## Microservice Spring Integration Test Action - Example usage
 
 ```
-name: Microservice Spring Generate
+name: Microservice Spring Integration Test
 
 # Controls when the workflow will run
 on:
@@ -14,8 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-generate.yml@main
-    secrets:
-      MAVEN_USER: ${{secrets.MAVEN_USER}}
-      MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
+    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-it-test.yml@main
 ```

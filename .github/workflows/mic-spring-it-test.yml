@@ -1,4 +1,4 @@
-name: Microservice Spring Test
+name: Microservice Spring Integration Test
 
 on:
   workflow_call:
@@ -20,9 +20,6 @@ jobs:
         with:
           name: mic-project
           path: ${{ github.workspace }}
-
-      - name: Unit test
-        run: mvn -e -B test -DskipTests
 
       - name: Integration test
         run: mvn -e -B verify -DskipTests -Pdocker
