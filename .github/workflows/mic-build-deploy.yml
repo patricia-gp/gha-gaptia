@@ -34,19 +34,18 @@ jobs:
       - name: Maven version
         run: |
           mvn -v
-          cat ${{ github.workspace }}/.m2/settings.xml
 
       - name: Compile
-        run: mvn -B clean compile
+        run: mvn -e -B clean compile
 
       - name: Unit Test
         run: mvn -B test
 
       - name: Package
-        run: mvn -B package -DskipTests
+        run: mvn -e -B package -DskipTests
 
       - name: Integration Test
         run: mvn -B verify -Pdocker
 
       - name: Deploy
-        run: mvn -B deploy -DskipTests -s ${{ github.workspace }}/settings.xml
+        run: mvn -e -B deploy -DskipTests
