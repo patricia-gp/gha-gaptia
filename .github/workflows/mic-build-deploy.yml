@@ -19,9 +19,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-        env:
-          GITHUB_ACTOR: ${{ github.GITHUB_ACTOR }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          server-id: github
+          settings-path: ${{ github.workspace }}
 
       - name: Get version
         run: |
@@ -37,13 +36,12 @@ jobs:
         run: mvn -B test
 
       - name: Package
-        run: mvn -B package -DskipTests
+        run: mvn -B package -DskipTests --file pom.xml
 
       - name: Integration Test
         run: mvn -B verify -Pdocker
 
       - name: Deploy
-        run: mvn -B deploy -DskipTests
+        run: mvn -B deploy -DskipTests -s ${{ github.workspace }}/settings.xml
         env:
-          GITHUB_ACTOR: ${{ github.GITHUB_ACTOR }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
