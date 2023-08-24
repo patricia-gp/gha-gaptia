@@ -41,5 +41,5 @@ jobs:
       - name: Upload artefactory
         uses: actions/upload-artifact@v3
         with:
-          name: api-target
-          path: target
+          name: api-pom-properties
+          path: target/maven-archiver/pom.properties

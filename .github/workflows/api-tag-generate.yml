@@ -15,8 +15,12 @@ jobs:
       - name: Download artefactory
         uses: actions/download-artifact@v3
         with:
-          name: api-target
-          path: target
+          name: api-pom-properties
+          path: ${{ github.workspace }}
+
+      - name: Pom Properties
+        run: |
+          cat ${{ github.workspace }}/pom.properties
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
@@ -24,5 +28,5 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
           strategy: regex
-          root: target/maven-archiver/pom.properties
+          root: ${{ github.workspace }}/pom.properties
           regex_pattern: 'version=(\S.*)'
