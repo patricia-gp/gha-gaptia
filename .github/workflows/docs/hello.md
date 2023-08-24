@@ -13,11 +13,11 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_call:
-    secrets:
-      MAVEN_USER: ${{secrets.MAVEN_USER}}
-      MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
   
 jobs:
  build:
     uses: patricia-gp/gha-gaptia/.github/workflows/hello.yml@main
+    with:
+      MAVEN_USER: ${{secrets.MAVEN_USER}}
+      MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
 ```
