@@ -20,13 +20,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Install API First
-        run: mvn -B install:install-file
+      - name: Resolve dependencies
+        run: mvn dependency:resolve
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Compile
-        run: mvn -B compile
+        run: mvn -B clean compile
 
       - name: Unit Test
         run: mvn -B test
