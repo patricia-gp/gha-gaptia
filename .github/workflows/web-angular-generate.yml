@@ -2,11 +2,6 @@ name: Web Angular Generate
 
 on:
   workflow_call:
-    secrets:
-      MAVEN_USER:
-        required: true
-      MAVEN_TOKEN:
-        required: true
 
 jobs:
   web:
