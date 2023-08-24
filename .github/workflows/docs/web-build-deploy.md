@@ -14,7 +14,7 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/common/web-build-deploy.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/web-build-deploy.yml@main
     secrets:
       MAVEN_USER: ${{secrets.MAVEN_USER}}
       MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}

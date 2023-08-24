@@ -16,5 +16,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/common/hello.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/hello.yml@main
 ```

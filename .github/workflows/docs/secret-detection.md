@@ -14,5 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/common/secret-detection.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/secret-detection.yml@main
 ```

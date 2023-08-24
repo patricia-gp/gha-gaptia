@@ -1,7 +1,7 @@
-## API First Generate Action - Example usage
+## Tag Generate Action - Example usage
 
 ```
-name: API First Generate
+name: Tag Generate
 
 # Controls when the workflow will run
 on:
@@ -14,8 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/api-first-generate.yml@main
-    secrets:
-      MAVEN_USER: ${{secrets.MAVEN_USER}}
-      MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
+    uses: patricia-gp/gha-gaptia/.github/workflows/tag-generate.yml@main
 ```
