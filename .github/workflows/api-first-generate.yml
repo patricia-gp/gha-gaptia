@@ -30,7 +30,12 @@ jobs:
         with:
           name: maven-settings
           path: ${{ github.workspace }}/.m2
-  
+
+      - name: Get version
+        run: |
+          mvn -v
+          cat ${{ github.workspace }}/.m2/settings.xml
+
       - name: Build with Deploy
         run: mvn -B deploy
 
