@@ -23,6 +23,7 @@ jobs:
       - name: Get version
         run: |
             mvn -v
+            cat ~/.m2/settings.xml
 
       - name: Compile
         run: mvn -B clean compile
