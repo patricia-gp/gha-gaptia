@@ -1,7 +1,7 @@
-## API First Generate Action - Example usage
+## Microservice Spring Generate Action - Example usage
 
 ```
-name: API First Generate
+name: Microservice Spring Generate
 
 # Controls when the workflow will run
 on:
@@ -14,7 +14,7 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/api-first-generate.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/mic-build-deploy.yml@main
     secrets:
       MAVEN_USER: ${{secrets.MAVEN_USER}}
       MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}

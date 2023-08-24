@@ -1,4 +1,4 @@
-name: API First Generate
+name: Microservice Spring Generate
 
 on:
   workflow_call:
@@ -9,7 +9,7 @@ on:
         required: true
 
 jobs:
-  api:
+  mic:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
@@ -35,11 +35,14 @@ jobs:
         run: |
           mvn -v
 
-      - name: Build with Deploy
-        run: mvn -e -B deploy -s ${{ github.workspace }}/.m2/settings.xml
+      - name: Compile
+        run: mvn -e -B clean compile
 
-      - name: Upload artefactory
-        uses: actions/upload-artifact@v3
-        with:
-          name: api-pom-properties
-          path: target/maven-archiver/pom.properties
+      - name: Unit Test
+        run: mvn -e -B test
+
+      - name: Integration Test
+        run: mvn -e -B verify -Pdocker
+
+      - name: Package
+        run: mvn -e -B package -DskipTests

@@ -1,7 +1,7 @@
-## Microservice Build & Deploy Action - Example usage
+## Web Angular Generate Action - Example usage
 
 ```
-name: Microservice Build & Deploy
+name: Web Angular Generate
 
 # Controls when the workflow will run
 on:
@@ -14,7 +14,7 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-build-deploy.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/web-build-deploy.yml@main
     secrets:
       MAVEN_USER: ${{secrets.MAVEN_USER}}
       MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
