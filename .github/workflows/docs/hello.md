@@ -13,7 +13,7 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_call:
-    secrets:
+    env:
       MAVEN_USER: ${{secrets.MAVEN_USER}}
       MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

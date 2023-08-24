@@ -2,7 +2,7 @@ name: Hello
 
 on:
   workflow_call:
-    secrets:
+    env:
       MAVEN_USER:
         required: true
       MAVEN_TOKEN:

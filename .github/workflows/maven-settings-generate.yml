@@ -3,7 +3,7 @@ name: Maven Settings Generate
 
 on:
   workflow_call:
-    secrets:
+    env:
       MAVEN_USER:
         required: true
       MAVEN_TOKEN:
@@ -12,7 +12,7 @@ on:
         GITHUB_TOKEN: true
 
   workflow_dispatch:
-    secrets:
+    env:
       MAVEN_USER: ${{secrets.MAVEN_USER}}
       MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
