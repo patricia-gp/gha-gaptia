@@ -12,9 +12,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  MAVEN_USER: ${{ secrets.MAVEN_USER }}
+  MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
 jobs:
-
  build:
     uses: patricia-gp/gha-gaptia/.github/workflows/web-build-deploy.yml@main
 ```
