@@ -4,10 +4,8 @@ on:
   workflow_call:
 
 jobs:
-
   mic:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
         uses: actions/checkout@v3.5.3
@@ -22,11 +20,11 @@ jobs:
           server-id: github
           settings-path: ${{ github.workspace }}
 
-      -name: Download artefactory
+      - name: Download artefactory
         uses: actions/download-artifact@v2
         with:
-            name: maven-settings
-            path: ${{ github.workspace }}/.m2
+          name: maven-settings
+          path: ${{ github.workspace }}/.m2
 
       - name: Get version
         run: |

@@ -3,15 +3,12 @@ name: Maven Settings Generate
 
 on:
   workflow_call:
-
   workflow_dispatch:
 
 jobs:
-
   repository:
     runs-on: ubuntu-latest
     steps:
-    
     - name: Generate settings.xml for Maven Builds
       uses: whelk-io/maven-settings-xml-action@v21
       with:
@@ -42,7 +39,7 @@ jobs:
         cat settings.xml
 
     - name: Upload artefactory
-        uses: actions/upload-artifact@v2
-        with:
-            name: maven-settings
-            path: settings.xml
+      uses: actions/upload-artifact@v2
+      with:
+        name: maven-settings
+        path: settings.xml
