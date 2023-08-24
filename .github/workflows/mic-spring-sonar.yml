@@ -26,4 +26,4 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: Sonar
-        run: mvn -e -B sonar:sonar -s ${{ github.workspace }}/.m2/settings.xml -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
+        run: mvn -e -B sonar:sonar -s ${{ github.workspace }}/.m2/settings.xml -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }}
