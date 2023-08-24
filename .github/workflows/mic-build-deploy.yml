@@ -35,8 +35,6 @@ jobs:
         run: |
             mvn -v
             cat ${{ github.workspace }}/.m2/settings.xml
-            mvn help:effective-pom -X > mvnpom.txt
-            cat mvnpom.txt
 
       - name: Compile
         run: mvn -B clean compile

@@ -22,6 +22,19 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          server-id: github
+          settings-path: ${{ github.workspace }}
+
+      - name: Download artefactory
+        uses: actions/download-artifact@v3
+        with:
+          name: maven-settings
+          path: ${{ github.workspace }}/.m2
+
+      - name: Get version
+        run: |
+          mvn -v
+          cat ${{ github.workspace }}/.m2/settings.xml
   
       - name: Build with Deploy
         run: mvn -B deploy
