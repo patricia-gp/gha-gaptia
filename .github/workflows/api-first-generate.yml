@@ -23,7 +23,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           server-id: github
-          settings-path: ${{ github.workspace }}
+          settings-path: ${{ github.workspace }}/.m2
 
       - name: Download artefactory
         uses: actions/download-artifact@v3
@@ -31,13 +31,13 @@ jobs:
           name: maven-settings
           path: ${{ github.workspace }}/.m2
 
-      - name: Get version
+      - name: Maven version
         run: |
           mvn -v
           cat ${{ github.workspace }}/.m2/settings.xml
 
       - name: Build with Deploy
-        run: mvn -B deploy
+        run: mvn -e -B deploy
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
