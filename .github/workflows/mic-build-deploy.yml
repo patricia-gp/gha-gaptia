@@ -20,7 +20,24 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build with Install
-        run: mvn clean -B deploy -Dmaven.test.skip=true
+      - name: Install API First
+        run: mvn -B install:install-file
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compile
+        run: mvn -B compile
+
+      - name: Unit Test
+        run: mvn -B test
+
+      - name: Package
+        run: mvn -B package -DskipTests
+
+      - name: Integration Test
+        run: mvn -B verify -Pdocker
+
+      - name: Deploy
+        run: mvn -B deploy -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
