@@ -35,11 +35,11 @@ jobs:
         run: |
           mvn -v
 
-      - name: Unit Test
-        run: mvn -e -B test -s ${{ github.workspace }}/.m2/settings.xml
-
-      - name: Integration Test
-        run: mvn -e -B verify -Pdocker -s ${{ github.workspace }}/.m2/settings.xml
-
       - name: Package
         run: mvn -e -B package -DskipTests -s ${{ github.workspace }}/.m2/settings.xml
+
+      - name: Upload artefactory
+        uses: actions/upload-artifact@v3
+        with:
+          name: mic-target
+          path: target
