@@ -39,13 +39,13 @@ jobs:
         run: mvn -e -B clean compile
 
       - name: Unit Test
-        run: mvn -B test
+        run: mvn -e -B test
 
       - name: Package
         run: mvn -e -B package -DskipTests
 
       - name: Integration Test
-        run: mvn -B verify -Pdocker
+        run: mvn -e -B verify -Pdocker
 
       - name: Deploy
-        run: mvn -e -B deploy -DskipTests
+        run: mvn -e -B deploy -DskipTests -s ${{ github.workspace }}/.m2/settings.xml

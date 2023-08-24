@@ -34,7 +34,6 @@ jobs:
       - name: Maven version
         run: |
           mvn -v
-          cat ${{ github.workspace }}/.m2/settings.xml
 
       - name: Build with Deploy
         run: mvn -e -B deploy -s ${{ github.workspace }}/.m2/settings.xml
