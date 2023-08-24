@@ -21,7 +21,7 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       - name: Download artefactory
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: maven-settings
           path: ${{ github.workspace }}/.m2
@@ -34,6 +34,7 @@ jobs:
       - name: Compile
         run: mvn -B clean compile
         env:
+          GITHUB_ACTOR: ${{ github.ACTOR }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Unit Test
@@ -48,4 +49,5 @@ jobs:
       - name: Deploy
         run: mvn -B deploy -DskipTests -s ${{ github.workspace }}/settings.xml
         env:
+          GITHUB_ACTOR: ${{ github.ACTOR }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
