@@ -20,6 +20,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Get version
+        run: |
+            mvn -v
+
       - name: Compile
         run: mvn -B clean compile
         env:
