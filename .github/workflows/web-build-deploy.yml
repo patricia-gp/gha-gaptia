@@ -3,6 +3,11 @@ name: Web Build Deploy
 on:
   workflow_call:
 
+env:
+  MAVEN_USER: ${{ secrets.MAVEN_USER }}
+  MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   web:
     runs-on: ubuntu-latest

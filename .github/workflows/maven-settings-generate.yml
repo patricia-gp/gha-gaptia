@@ -5,6 +5,11 @@ on:
   workflow_call:
   workflow_dispatch:
 
+env:
+  MAVEN_USER: ${{ secrets.MAVEN_USER }}
+  MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   repository:
     runs-on: ubuntu-latest
