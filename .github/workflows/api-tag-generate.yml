@@ -25,9 +25,11 @@ jobs:
           cat ${{ github.workspace }}/pom.properties
 
       - name: Tag Version
-        uses: butlerlogic/action-autotag@master
+        uses: butlerlogic/action-autotag@stable
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
-          tag_prefix: "v"
+          strategy: regex
           root: ${{ github.workspace }}/pom.properties
           regex_pattern: 'version=(\S.*)'
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          tag_prefix: "v"
