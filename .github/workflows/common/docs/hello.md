@@ -1,7 +1,9 @@
-## Secret Detection Action - Example usage
+## Hello Action - Example usage
 
 ```
-name: Secret Detection
+# This is a basic workflow to help you get started with Actions
+
+name: Hello
 
 # Controls when the workflow will run
 on:
@@ -14,8 +16,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/secret-detection.yml@main
-    secrets:
-      MAVEN_USER: ${{secrets.MAVEN_USER}}
-      MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
+    uses: patricia-gp/gha-gaptia/.github/workflows/common/hello.yml@main
 ```

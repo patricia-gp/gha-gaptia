@@ -1,7 +1,7 @@
-## Web Build & Deploy Action - Example usage
+## API First Generate Action - Example usage
 
 ```
-name: Web Build & Deploy
+name: API First Generate
 
 # Controls when the workflow will run
 on:
@@ -14,7 +14,7 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/web-build-deploy.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/common/api-first-generate.yml@main
     secrets:
       MAVEN_USER: ${{secrets.MAVEN_USER}}
       MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
