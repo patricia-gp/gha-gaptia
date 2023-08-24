@@ -10,9 +10,6 @@ on:
         required: true
 
   workflow_dispatch:
-    secrets:
-      MAVEN_USER: ${{secrets.MAVEN_USER}}
-      MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
 
 jobs:
   repository:
