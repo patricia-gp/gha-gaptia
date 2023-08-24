@@ -7,7 +7,7 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
         uses: actions/checkout@v3.5.3
@@ -25,10 +25,9 @@ jobs:
           cat ${{ github.workspace }}/pom.properties
 
       - name: Tag Version
-        uses: butlerlogic/action-autotag@stable
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        uses: butlerlogic/action-autotag@master
         with:
-          strategy: regex
+          tag_prefix: "v"
           root: ${{ github.workspace }}/pom.properties
           regex_pattern: 'version=(\S.*)'
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
