@@ -15,7 +15,7 @@ on:
 jobs:
  build:
     uses: patricia-gp/gha-gaptia/.github/workflows/mic-build-deploy.yml@main
-    with:
+    secrets:
       MAVEN_USER: ${{secrets.MAVEN_USER}}
       MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
 ```
