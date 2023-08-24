@@ -21,5 +21,8 @@ jobs:
           name: mic-target
           path: ${{ github.workspace }}/target
 
-      - name: List
-        run: ls -la ${{ github.workspace }}/target
+      - name: Unit test
+        run: mvn -e -B test -DskipTests
+
+      - name: Integration test
+        run: mvn -e -B verify -DskipTests -Pdocker
