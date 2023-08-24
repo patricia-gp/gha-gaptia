@@ -35,9 +35,6 @@ jobs:
         run: |
           mvn -v
 
-      - name: Compile
-        run: mvn -e -B clean compile -s ${{ github.workspace }}/.m2/settings.xml
-
       - name: Unit Test
         run: mvn -e -B test -s ${{ github.workspace }}/.m2/settings.xml
 

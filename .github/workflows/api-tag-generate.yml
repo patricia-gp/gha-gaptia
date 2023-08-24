@@ -6,8 +6,7 @@ on:
 jobs:
   tag:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    permissions: write-all
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
         uses: actions/checkout@v3.5.3
