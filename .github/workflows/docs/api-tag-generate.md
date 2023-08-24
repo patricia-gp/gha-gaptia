@@ -1,7 +1,7 @@
 ## Tag Generate Action - Example usage
 
 ```
-name: Tag Generate
+name: Api Tag Generate
 
 # Controls when the workflow will run
 on:
@@ -14,5 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/tag-generate.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/api-tag-generate.yml@main
 ```

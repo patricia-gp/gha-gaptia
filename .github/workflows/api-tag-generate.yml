@@ -12,6 +12,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Download artefactory
+        uses: actions/download-artifact@v3
+        with:
+          name: api-target
+          path: target
+
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
         env:

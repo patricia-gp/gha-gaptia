@@ -38,11 +38,8 @@ jobs:
       - name: Build with Deploy
         run: mvn -e -B deploy -s ${{ github.workspace }}/.m2/settings.xml
 
-      - name: Tag Version
-        uses: butlerlogic/action-autotag@stable
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Upload artefactory
+        uses: actions/upload-artifact@v3
         with:
-          strategy: regex
-          root: target/maven-archiver/pom.properties
-          regex_pattern: 'version=(\S.*)'
+          name: api-target
+          path: target
