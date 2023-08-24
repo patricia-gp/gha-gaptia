@@ -22,7 +22,7 @@ jobs:
             {
               "id": "github",
               "username": "${{ github.ACTOR }}",
-              "password": "PERSONAL_ACCESS_TOKEN"
+              "password": "${{ secrets.GITHUB_TOKEN }}"
             }
           ]
         repositories: >
@@ -40,3 +40,9 @@ jobs:
     - name: View settings.xml
       run: |
         cat settings.xml
+
+    - name: Upload artefactory
+        uses: actions/upload-artifact@v2
+        with:
+            name: maven-settings
+            path: settings.xml

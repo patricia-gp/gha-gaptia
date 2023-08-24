@@ -1,46 +1,14 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Hello
 
-# Controls when the workflow will run
 on:
   workflow_call:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-  # This workflow contains a single job called "build"
   hello:
-  
-    # The type of runner that the job will run on
-    runs-on: ubuntu-20.04    
-    container:
-      image: ubuntu:20.04
+    runs-on: ubuntu-latest
 
-    permissions:
-      # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
-      contents: write
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-      - name: Install GIT
-        run: |
-          # install GIT, as without it checkout would use REST API
-          apt update
-          apt install -y git
-
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
-        uses: actions/checkout@v3.5.3
-        with:
-          fetch-depth: 0
-
-      # Fix GIT not liking owner of the checkout dir
-      - name: Set ownership
-        run: |
-          chown -R $(id -u):$(id -g) $PWD
-
-      # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!

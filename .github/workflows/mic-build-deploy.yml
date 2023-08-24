@@ -22,10 +22,16 @@ jobs:
           server-id: github
           settings-path: ${{ github.workspace }}
 
+      -name: Download artefactory
+        uses: actions/download-artifact@v2
+        with:
+            name: maven-settings
+            path: ${{ github.workspace }}/.m2
+
       - name: Get version
         run: |
             mvn -v
-            cat ~/.m2/settings.xml
+            cat ${{ github.workspace }}/.m2/settings.xml
 
       - name: Compile
         run: mvn -B clean compile
