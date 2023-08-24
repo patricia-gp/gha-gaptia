@@ -2,6 +2,13 @@ name: Hello
 
 on:
   workflow_call:
+    secrets:
+      MAVEN_USER:
+        required: true
+      MAVEN_TOKEN:
+        required: true
+      GITHUB_TOKEN:
+        GITHUB_TOKEN: true
 
 jobs:
   hello:
