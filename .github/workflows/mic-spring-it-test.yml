@@ -7,12 +7,6 @@ jobs:
   mic:
     runs-on: ubuntu-latest
     steps:
-      - name: Download maven-settings
-        uses: actions/download-artifact@v3
-        with:
-          name: maven-settings
-          path: ~/.m2
-
       - name: Download mic-workspace
         uses: actions/download-artifact@v3
         with:
@@ -25,7 +19,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           server-id: github
-          settings-path: ~/.m2
+          settings-path: ./.m2
           cache: 'maven'
 
       - name: Integration test

@@ -38,4 +38,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: mic-workspace
-          path: .
+          path: |
+            ~/.m2
+            .
