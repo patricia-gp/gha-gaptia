@@ -31,5 +31,9 @@ jobs:
           name: mic-target
           path: .'
 
+      - name: List
+        run: |
+          ls -Rla
+
       - name: Sonar
         run: mvn -e -o -B sonar:sonar -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }}

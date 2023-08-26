@@ -27,5 +27,9 @@ jobs:
           name: mic-target
           path: .
 
+      - name: List
+        run: |
+          ls -Rla
+
       - name: Integration test
         run: mvn -e -o -B verify -DskipTests -Pdocker

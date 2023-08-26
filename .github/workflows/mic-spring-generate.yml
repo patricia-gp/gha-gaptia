@@ -36,7 +36,7 @@ jobs:
 
       - name: List
         run: |
-          ls -la
+          ls -la .m2
 
       - name: Upload mic-workspace
         uses: actions/upload-artifact@v3
