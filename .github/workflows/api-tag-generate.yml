@@ -23,6 +23,9 @@ jobs:
         run: |
           cat ./pom.properties
 
+      - name: Get date
+        run: echo "NOW=$(date '+%Y%m%d %T')" >> $GITHUB_ENV
+
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
         env:
@@ -32,4 +35,4 @@ jobs:
           root: ./pom.properties
           regex_pattern: 'version=(\S.*)'
           tag_prefix: "v-"
-          tag_suffix: "-$(date +%Y%m%d%H%M)"
+          tag_suffix: "-$NOW"
