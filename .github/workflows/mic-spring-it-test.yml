@@ -7,10 +7,10 @@ jobs:
   mic:
     runs-on: ubuntu-latest
     steps:
-      - name: Download maven-m2
+      - name: Download maven-settings
         uses: actions/download-artifact@v3
         with:
-          name: maven-m2
+          name: maven-settings
           path: ~/.m2
 
       - name: Download mic-workspace
@@ -29,4 +29,4 @@ jobs:
           cache: 'maven'
 
       - name: Integration test
-        run: mvn -e -o -B verify -DskipTests -Pdocker
+        run: mvn -e -B verify -DskipTests -Pdocker

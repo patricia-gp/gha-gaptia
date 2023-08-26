@@ -43,8 +43,8 @@ jobs:
         run: |
           cat ./settings.xml
 
-      - name: Upload maven-m2
+      - name: Upload maven-settings
         uses: actions/upload-artifact@v3
         with:
-          name: maven-m2
+          name: maven-settings
           path: ./settings.xml

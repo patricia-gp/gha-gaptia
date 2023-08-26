@@ -7,10 +7,10 @@ jobs:
   mic:
     runs-on: ubuntu-latest
     steps:
-      - name: Download maven-m2
+      - name: Download maven-settings
         uses: actions/download-artifact@v3
         with:
-          name: maven-m2
+          name: maven-settings
           path: ~/.m2
 
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
@@ -33,15 +33,6 @@ jobs:
 
       - name: Package
         run: mvn -e -B package -DskipTests
-
-      - name: List
-        run: ls -la .
-
-      - name: Upload maven-m2
-        uses: actions/upload-artifact@v3
-        with:
-          name: maven-m2
-          path: ~/.m2
 
       - name: Upload mic-workspace
         uses: actions/upload-artifact@v3
