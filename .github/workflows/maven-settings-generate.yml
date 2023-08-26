@@ -47,4 +47,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: maven-settings
+          retention-days: 1
           path: ./settings.xml
