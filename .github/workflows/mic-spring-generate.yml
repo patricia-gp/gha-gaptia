@@ -11,7 +11,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: maven-settings
-          path: ./.m2
+          path: .
 
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
         uses: actions/checkout@v3.5.3
