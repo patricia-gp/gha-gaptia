@@ -18,8 +18,8 @@ jobs:
       - name: Download artefactory
         uses: actions/download-artifact@v3
         with:
-          name: mic-project
+          name: mic-workspace
           path: ${{ github.workspace }}
 
       - name: Unit test
-        run: mvn -e -B test -DskipTests -s ${{ github.workspace }}/.m2/settings.xml
+        run: mvn -e -o -B test -DskipTests -s ${{ github.workspace }}/.m2/settings.xml

@@ -18,8 +18,8 @@ jobs:
       - name: Download artefactory
         uses: actions/download-artifact@v3
         with:
-          name: mic-project
+          name: mic-workspace
           path: ${{ github.workspace }}
 
       - name: Integration test
-        run: mvn -e -B verify -DskipTests -Pdocker -s ${{ github.workspace }}/.m2/settings.xml
+        run: mvn -e -o -B verify -DskipTests -Pdocker -s ${{ github.workspace }}/.m2/settings.xml

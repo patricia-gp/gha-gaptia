@@ -22,11 +22,11 @@ jobs:
       - name: Download artefactory
         uses: actions/download-artifact@v3
         with:
-          name: mic-project
+          name: mic-workspace
           path: ${{ github.workspace }}
 
       - name: Url sonar
         run: echo Sonar, ${{ inputs.SONAR_HOST_URL }}
 
       - name: Sonar
-        run: mvn -e -B sonar:sonar -s ${{ github.workspace }}/.m2/settings.xml -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }}
+        run: mvn -e -o -B sonar:sonar -s ${{ github.workspace }}/.m2/settings.xml -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }}

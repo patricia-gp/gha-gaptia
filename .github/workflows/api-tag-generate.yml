@@ -16,7 +16,7 @@ jobs:
       - name: Download artefactory
         uses: actions/download-artifact@v3
         with:
-          name: api-pom-properties
+          name: api-properties
           path: ${{ github.workspace }}
 
       - name: Pom Properties

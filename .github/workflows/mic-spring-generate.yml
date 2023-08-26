@@ -36,5 +36,5 @@ jobs:
       - name: Upload artefactory
         uses: actions/upload-artifact@v3
         with:
-          name: mic-project
+          name: mic-workspace
           path: ${{ github.workspace }}
