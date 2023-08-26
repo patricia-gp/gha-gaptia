@@ -1,9 +1,9 @@
-## Hello Action - Example usage
+## Microservice Spring Instance Action - Example usage
 
 ```
 # This is a basic workflow to help you get started with Actions
 
-name: Hello
+name: Microservice Spring Instance
 
 # Controls when the workflow will run
 on:
@@ -16,5 +16,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/hello.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-instance.yml@main
 ```
