@@ -17,7 +17,7 @@ jobs:
       - name: Generate settings.xml for Maven Builds
         uses: whelk-io/maven-settings-xml-action@v21
         with:
-          output_file: ~/.m2/settings.xml
+          output_file: ./settings.xml
           active_profiles: '[ "github" ]'
           servers: >
             [
@@ -41,10 +41,10 @@ jobs:
 
       - name: View settings.xml
         run: |
-          cat ~/.m2/settings.xml
+          cat ./settings.xml
 
       - name: Upload maven-m2
         uses: actions/upload-artifact@v3
         with:
           name: maven-m2
-          path: ~/.m2
+          path: ./settings.xml
