@@ -16,9 +16,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          server-id: github
-          settings-path: ~/.m2
-          cache: 'maven'
 
       - name: Download maven-m2
         uses: actions/download-artifact@v3
