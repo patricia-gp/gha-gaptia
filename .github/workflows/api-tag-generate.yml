@@ -31,5 +31,5 @@ jobs:
           strategy: regex
           root: ./pom.properties
           regex_pattern: 'version=(\S.*)'
-          tag_prefix: "v"
-          tag_suffix: " $(date +%Y%m%d%H%M)"
+          tag_prefix: "v-"
+          tag_suffix: "-$(date +%Y%m%d%H%M)"
