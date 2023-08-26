@@ -34,6 +34,10 @@ jobs:
       - name: Package
         run: mvn -e -B package -DskipTests
 
+      - name: List
+        run: |
+          ls -la
+
       - name: Upload mic-workspace
         uses: actions/upload-artifact@v3
         with:
