@@ -19,7 +19,7 @@ jobs:
           server-id: github
           settings-path: ~/.m2
 
-      - name: Download maven-settings
+      - name: Download maven-m2
         uses: actions/download-artifact@v3
         with:
           name: maven-settings
