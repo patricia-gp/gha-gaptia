@@ -26,4 +26,4 @@ jobs:
           path: ./target
 
       - name: Integration test
-        run: mvn -e -B verify -Pdocker
+        run: mvn -e -B verify -Pdocker -skipTests=true

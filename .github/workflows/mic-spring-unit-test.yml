@@ -26,4 +26,4 @@ jobs:
           path: ./target
 
       - name: Unit test
-        run: mvn -e -B test
+        run: mvn -e -B test -skipTestsIT=true
