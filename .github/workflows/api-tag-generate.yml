@@ -13,15 +13,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download artefactory
+      - name: Download api-properties
         uses: actions/download-artifact@v3
         with:
           name: api-properties
-          path: ${{ github.workspace }}
+          path: .
 
       - name: Pom Properties
         run: |
-          cat ${{ github.workspace }}/pom.properties
+          cat ./pom.properties
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
@@ -29,6 +29,6 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
           strategy: regex
-          root: ${{ github.workspace }}/pom.properties
+          root: ./pom.properties
           regex_pattern: 'version=(\S.*)'
           tag_prefix: "v"

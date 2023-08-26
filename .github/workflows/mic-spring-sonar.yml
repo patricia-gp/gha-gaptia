@@ -17,16 +17,19 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           server-id: github
-          settings-path: ${{ github.workspace }}/.m2
+          settings-path: ~/.m2
 
-      - name: Download artefactory
+      - name: Download maven-settings
+        uses: actions/download-artifact@v3
+        with:
+          name: maven-settings
+          path: ~/.m2
+
+      - name: Download mic-workspace
         uses: actions/download-artifact@v3
         with:
           name: mic-workspace
-          path: ${{ github.workspace }}
-
-      - name: Url sonar
-        run: echo Sonar, ${{ inputs.SONAR_HOST_URL }}
+          path: .
 
       - name: Sonar
-        run: mvn -e -o -B sonar:sonar -s ${{ github.workspace }}/.m2/settings.xml -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }}
+        run: mvn -e -o -B sonar:sonar -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }}

@@ -18,22 +18,22 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           server-id: github
-          settings-path: ${{ github.workspace }}/.m2
+          settings-path: ~/.m2
 
       - name: Download artefactory
         uses: actions/download-artifact@v3
         with:
           name: maven-settings
-          path: ${{ github.workspace }}/.m2
+          path: ~/.m2
 
       - name: Maven version
         run: |
           mvn -v
 
       - name: Build with Deploy
-        run: mvn -e -B deploy -s ${{ github.workspace }}/.m2/settings.xml
+        run: mvn -e -B deploy
 
-      - name: Upload artefactory
+      - name: Upload api-properties
         uses: actions/upload-artifact@v3
         with:
           name: api-properties

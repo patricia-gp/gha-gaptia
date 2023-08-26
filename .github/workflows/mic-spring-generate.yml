@@ -18,26 +18,32 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           server-id: github
-          settings-path: ${{ github.workspace }}/.m2
+          settings-path: ~/.m2
 
       - name: Download artefactory
         uses: actions/download-artifact@v3
         with:
           name: maven-settings
-          path: ${{ github.workspace }}/.m2
+          path: ~/.m2
 
       - name: Maven version
         run: |
           mvn -v
 
       - name: Package
-        run: mvn -e -B package -DskipTests -s ${{ github.workspace }}/.m2/settings.xml
+        run: mvn -e -B package -DskipTests
 
       - name: List
-        run: ls -la ${{ github.workspace }}
+        run: ls -la .
 
-      - name: Upload artefactory
+      - name: Upload maven-m2
+        uses: actions/upload-artifact@v3
+        with:
+          name: maven-m2
+          path: ~/.m2
+
+      - name: Upload mic-workspace
         uses: actions/upload-artifact@v3
         with:
           name: mic-workspace
-          path: ${{ github.workspace }}
+          path: .
