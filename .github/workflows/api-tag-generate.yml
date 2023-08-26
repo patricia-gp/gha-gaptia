@@ -24,8 +24,7 @@ jobs:
           cat ./pom.properties
 
       - name: Get now
-        run: |
-          NOW=$(date '+%Y%m%d%H%M%S')" >> $GITHUB_ENV
+        run: echo "NOW=$(date '+%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@stable
