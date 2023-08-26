@@ -33,4 +33,4 @@ jobs:
           cache: 'maven'
 
       - name: Sonar
-        run: mvn -e -B sonar:sonar -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }}
+        run: mvn -e -o -B sonar:sonar -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }}
