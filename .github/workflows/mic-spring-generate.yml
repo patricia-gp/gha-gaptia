@@ -33,6 +33,9 @@ jobs:
       - name: Package
         run: mvn -e -B package -DskipTests -s ${{ github.workspace }}/.m2/settings.xml
 
+      - name: List
+        run: ls -la ${{ github.workspace }}
+
       - name: Upload artefactory
         uses: actions/upload-artifact@v3
         with:
