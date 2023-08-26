@@ -20,6 +20,8 @@ jobs:
         type: string
         required: true
     secrets:
+      SONAR_ORGANIZATION:
+        required: true
       SONAR_TOKEN:
         required: true
 ```
