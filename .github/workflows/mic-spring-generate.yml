@@ -41,6 +41,8 @@ jobs:
       - name: Upload mic-workspace
         uses: actions/upload-artifact@v3
         with:
-          name: mic-workspace
+          name: mic-target
           retention-days: 1
-          path: .
+          path: |
+            ./.m2
+            ./target
