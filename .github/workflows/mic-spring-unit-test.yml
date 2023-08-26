@@ -23,7 +23,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: mic-target
-          path: .
+          path: ./target
 
       - name: Unit test
         run: mvn -e -B test
