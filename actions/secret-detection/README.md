@@ -36,6 +36,6 @@ echo “PATH=$HOME/.local/bin:$PATH” >> ~/.profile
 source ~/.profile
 detect-secrets --version
 
-detect-secrets scan > .secrets.baseline
+detect-secrets -v scan > .secrets.baseline
 detect-secrets audit .secrets.baseline
 ```
