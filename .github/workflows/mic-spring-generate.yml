@@ -17,8 +17,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          server-id: github
-          settings-path: ./.m2
           cache: 'maven'
 
       - name: Download maven-settings
@@ -32,11 +30,7 @@ jobs:
           mvn -v
 
       - name: Package
-        run: mvn -e -B package -DskipTests
-
-      - name: List
-        run: |
-          ls -la .m2
+        run: mvn -e -B clena package -DskipTests
 
       - name: Upload mic-workspace
         uses: actions/upload-artifact@v3
@@ -44,5 +38,4 @@ jobs:
           name: mic-target
           retention-days: 1
           path: |
-            ./.m2
             ./target

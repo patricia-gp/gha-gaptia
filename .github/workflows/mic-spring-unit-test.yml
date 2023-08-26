@@ -17,8 +17,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          server-id: github
-          settings-path: ./.m2
           cache: 'maven'
 
       - name: Download mic-target
@@ -27,9 +25,5 @@ jobs:
           name: mic-target
           path: .
 
-      - name: List
-        run: |
-          ls -Rla
-
       - name: Unit test
-        run: mvn -e -o -B test
+        run: mvn -e -B test

@@ -21,19 +21,13 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          server-id: github
-          settings-path: ./.m2
           cache: 'maven'
 
       - name: Download mic-target
         uses: actions/download-artifact@v3
         with:
           name: mic-target
-          path: .'
-
-      - name: List
-        run: |
-          ls -Rla
+          path: .
 
       - name: Sonar
-        run: mvn -e -o -B sonar:sonar -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }}
+        run: mvn -e -B sonar:sonar -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }}
