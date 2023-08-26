@@ -2,7 +2,7 @@
 
 This github action scans a repository using Yelp.
 
-## Example GitHub workflow
+## Example GitHub Workflow
 ```
 name: Secret Detection
 
@@ -24,18 +24,28 @@ jobs:
 pip install detect-secrets
 ```
 
-## Example local WSL2
+## Example local Windows Wsl2
 ```
 sudo apt update
 sudo apt install python3
 sudo apt install python-is-python3
 sudo apt-get install python3-pip
 
-pip install detect-secrets
+pip install detect-secrets==1.4.0
 echo “PATH=$HOME/.local/bin:$PATH” >> ~/.profile
 source ~/.profile
 detect-secrets --version
 
+# First scan
 detect-secrets -v scan > .secrets.baseline
+# Next scans
+detect-secrets -v scan --baseline .secrets.baseline
+
+#Audit secrets
 detect-secrets audit .secrets.baseline
+
+# Save audit
+git add .secrets.baseline
+git commit -m "Add .secrets.baseline"
+git push
 ```
