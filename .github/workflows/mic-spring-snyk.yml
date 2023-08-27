@@ -28,5 +28,10 @@ jobs:
           name: mic-target
           path: ./target
 
+      - name: Permission mvnw
+        run: |
+          mvn -v
+          git update-index --chmod=+x ./mvnw
+
       - name: Unit test
         run: mvn -e -B install -DskipTests=true -DskipTestsIT=true -Dsnyk.token=${{ secrets.SNYK_TOKEN }}
