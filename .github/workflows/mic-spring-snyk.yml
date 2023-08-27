@@ -7,6 +7,8 @@ on:
         type: string
         required: true
     secrets:
+      SNYK_ORG:
+        required: true
       SNYK_TOKEN:
         required: true
 
@@ -33,4 +35,4 @@ jobs:
           path: ./target
 
       - name: Unit test
-        run: mvn -e -B install -DskipTestsIT=true -Dsnyk.login=${{ secrets.SNYK_TOKEN }}
+        run: mvn -e -B install -DskipTestsIT=true -Dsnyk.org=${{ secrets.SNYK_ORG }} -Dsnyk.login=${{ secrets.SNYK_TOKEN }}

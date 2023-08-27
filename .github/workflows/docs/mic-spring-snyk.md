@@ -20,6 +20,8 @@ jobs:
         type: string
         required: true
     secrets:
+      SNYK_ORG:
+        required: true
       SNYK_TOKEN:
         required: true
 ```
