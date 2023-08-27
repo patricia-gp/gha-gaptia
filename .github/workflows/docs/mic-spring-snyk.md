@@ -15,13 +15,7 @@ on:
 jobs:
  build:
     uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-snyk.yml@main
-    inputs:
-      SNYK_HOST_URL:
-        type: string
-        required: true
     secrets:
-      SNYK_ORG:
-        required: true
       SNYK_TOKEN:
         required: true
 ```

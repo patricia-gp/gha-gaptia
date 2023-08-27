@@ -2,13 +2,7 @@ name: Microservice Spring Unit Test
 
 on:
   workflow_call:
-    inputs:
-      SNYK_HOST_URL:
-        type: string
-        required: true
     secrets:
-      SNYK_ORG:
-        required: true
       SNYK_TOKEN:
         required: true
 
@@ -35,4 +29,4 @@ jobs:
           path: ./target
 
       - name: Unit test
-        run: mvn -e -B install -DskipTests=true -DskipTestsIT=true -Dsnyk.org=${{ secrets.SNYK_ORG }} -Dsnyk.token=${{ secrets.SNYK_TOKEN }}
+        run: mvn -e -B install -DskipTests=true -DskipTestsIT=true -Dsnyk.token=${{ secrets.SNYK_TOKEN }}
