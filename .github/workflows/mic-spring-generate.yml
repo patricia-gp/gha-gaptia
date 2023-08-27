@@ -28,6 +28,7 @@ jobs:
       - name: Maven version
         run: |
           mvn -v
+          git update-index --chmod=+x mvnw
 
       - name: Package
         run: mvn -e -B clean package -DskipTests=true -Dsnyk.skip=true
