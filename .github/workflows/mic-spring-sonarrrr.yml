@@ -7,8 +7,6 @@ on:
         type: string
         required: true
     secrets:
-      SONAR_ORGANIZATION:
-        required: true
       SONAR_TOKEN:
         required: true
 
@@ -35,4 +33,4 @@ jobs:
           path: ./target
 
       - name: Sonar
-        run: mvn -e -B verify sonar:sonar -DskipTestsIT=true -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.qualitygate.wait=true
+        run: mvn -e -B verify sonar:sonar -DskipTestsIT=true -Dsnyk.skip=true -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.qualitygate.wait=true

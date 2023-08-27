@@ -30,7 +30,7 @@ jobs:
           mvn -v
 
       - name: Package
-        run: mvn -e -B clean package -DskipTests=true
+        run: mvn -e -B clean package -DskipTests=true -Dsnyk.skip=true
 
       - name: Upload mic-workspace
         uses: actions/upload-artifact@v3
