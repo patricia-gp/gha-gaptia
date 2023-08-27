@@ -35,4 +35,4 @@ jobs:
           path: ./target
 
       - name: Sonar
-        run: mvn -e -B sonar:sonar -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }} -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: mvn -e -B verify sonar:sonar -DskipTestsIT=true -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }} -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
