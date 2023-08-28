@@ -1,7 +1,7 @@
 ## Tag Generate Action - Example usage
 
 ```
-name: Api Tag Generate
+name: Tag Generate
 
 # Controls when the workflow will run
 on:

@@ -1,10 +1,10 @@
-name: API Spring Package
+name: Spring Package
 
 on:
   workflow_call:
 
 jobs:
-  api:
+  spring:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
@@ -19,7 +19,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Download settings
+      - name: Download maven-settings
         uses: actions/download-artifact@v3
         with:
           name: maven-settings
@@ -30,14 +30,11 @@ jobs:
           mvn -v
 
       - name: Package
-        run: mvn -e -B clean package
+        run: mvn -e -B clean package -DskipTests=true -Dsnyk.skip=true
 
-      - name: Deploy
-        run: mvn -e -B deploy
-
-      - name: Upload api-properties
+      - name: Upload spring-target
         uses: actions/upload-artifact@v3
         with:
-          name: api-properties
+          name: spring-target
           retention-days: 1
-          path: target/maven-archiver/pom.properties
+          path: ./target

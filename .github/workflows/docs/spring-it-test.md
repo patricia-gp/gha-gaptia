@@ -1,7 +1,7 @@
-## Microservice Spring Snyk Action - Example usage
+## Spring Integration Test Action - Example usage
 
 ```
-name: Microservice Spring Snyk
+name: Spring Integration Test
 
 # Controls when the workflow will run
 on:
@@ -14,8 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-snyk.yml@main
-    secrets:
-      SNYK_TOKEN:
-        required: true
+    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-it-test.yml@main
 ```

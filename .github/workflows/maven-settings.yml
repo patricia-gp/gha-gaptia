@@ -1,4 +1,4 @@
-name: Maven Settings Generate
+name: Maven Settings
 
 on:
   workflow_call:
@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  repository:
+  maven:
     runs-on: ubuntu-latest
     steps:
       - name: Generate settings.xml for Maven Builds

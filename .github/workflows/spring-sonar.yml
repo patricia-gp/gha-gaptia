@@ -1,4 +1,4 @@
-name: Microservice Spring Scanner Sonar
+name: Spring Scanner Sonar
 
 on:
   workflow_call:
@@ -11,7 +11,7 @@ on:
         required: true
 
 jobs:
-  mic:
+  spring:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
@@ -32,10 +32,10 @@ jobs:
           name: maven-settings
           path: ~/.m2
 
-      - name: Download mic-target
+      - name: Download spring-target
         uses: actions/download-artifact@v3
         with:
-          name: mic-target
+          name: spring-target
           path: ./target
 
       - name: Sonar

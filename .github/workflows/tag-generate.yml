@@ -1,4 +1,4 @@
-name: Api Tag Generate
+name: Tag Generate
 
 on:
   workflow_call:
@@ -13,10 +13,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download api-properties
+      - name: Download api-target
         uses: actions/download-artifact@v3
         with:
-          name: api-properties
+          name: api-target
           path: .
 
       - name: Pom Properties

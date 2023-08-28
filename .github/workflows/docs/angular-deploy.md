@@ -1,7 +1,7 @@
-## API Spring Package Action - Example usage
+## Angular Deploy Action - Example usage
 
 ```
-name: API Spring Package
+name: Angular Deploy
 
 # Controls when the workflow will run
 on:
@@ -14,5 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/api-first-package.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/angular-deploy.yml@main
 ```

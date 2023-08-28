@@ -1,7 +1,7 @@
-## Microservice Spring Sonar Action - Example usage
+## Spring Snyk Action - Example usage
 
 ```
-name: Microservice Spring Sonar
+name: Spring Snyk
 
 # Controls when the workflow will run
 on:
@@ -14,12 +14,8 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-sonar.yml@main
-    inputs:
-      SONAR_HOST_URL:
-        type: string
-        required: true
+    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-snyk.yml@main
     secrets:
-      SONAR_TOKEN:
+      SNYK_TOKEN:
         required: true
 ```

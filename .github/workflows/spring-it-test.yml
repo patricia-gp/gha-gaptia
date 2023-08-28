@@ -1,10 +1,10 @@
-name: Microservice Spring Generate
+name: Spring Integration Test
 
 on:
   workflow_call:
 
 jobs:
-  mic:
+  spring:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
@@ -25,17 +25,11 @@ jobs:
           name: maven-settings
           path: ~/.m2
 
-      - name: Maven version
-        run: |
-          mvn -v
-
-      - name: Package
-        run: mvn -e -B clean package -DskipTests=true -Dsnyk.skip=true
-
-      - name: Upload mic-target
-        uses: actions/upload-artifact@v3
+      - name: Download spring-target
+        uses: actions/download-artifact@v3
         with:
-          name: mic-target
-          retention-days: 1
-          path: |
-            ./target
+          name: spring-target
+          path: ./target
+
+      - name: Integration test
+        run: mvn -e -B verify -Pdocker -DskipTests=true -Dsnyk.skip=true

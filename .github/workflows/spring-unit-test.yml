@@ -1,10 +1,10 @@
-name: Microservice Spring Integration Test
+name: Spring Unit Test
 
 on:
   workflow_call:
 
 jobs:
-  mic:
+  spring:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
@@ -25,11 +25,11 @@ jobs:
           name: maven-settings
           path: ~/.m2
 
-      - name: Download mic-target
+      - name: Download spring-target
         uses: actions/download-artifact@v3
         with:
-          name: mic-target
+          name: spring-target
           path: ./target
 
-      - name: Integration test
-        run: mvn -e -B verify -Pdocker -DskipTests=true -Dsnyk.skip=true
+      - name: Unit test
+        run: mvn -e -B test -Dsnyk.skip=true

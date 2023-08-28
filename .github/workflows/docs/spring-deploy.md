@@ -1,7 +1,7 @@
-## Microservice Spring Package Action - Example usage
+## Spring Deploy Action - Example usage
 
 ```
-name: Microservice Spring Package
+name: Spring Deploy
 
 # Controls when the workflow will run
 on:
@@ -14,5 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-package.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-deploy.yml@main
 ```

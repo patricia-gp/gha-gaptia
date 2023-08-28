@@ -1,7 +1,7 @@
-## Microservice Spring Deploy Action - Example usage
+## Maven Settings Action - Example usage
 
 ```
-name: Microservice Spring Deploy
+name: Maven Settings
 
 # Controls when the workflow will run
 on:
@@ -14,5 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-deploy.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/maven-settings.yml@main
 ```

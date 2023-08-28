@@ -1,10 +1,10 @@
-name: Web Angular Generate
+name: Angular Deploy
 
 on:
   workflow_call:
 
 jobs:
-  web:
+  anuglar:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}

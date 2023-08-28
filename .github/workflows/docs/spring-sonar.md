@@ -1,7 +1,7 @@
-## Web Angular Generate Action - Example usage
+## Spring Sonar Action - Example usage
 
 ```
-name: Web Angular Generate
+name: Spring Sonar
 
 # Controls when the workflow will run
 on:
@@ -14,5 +14,12 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/web-build-deploy.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-sonar.yml@main
+    inputs:
+      SONAR_HOST_URL:
+        type: string
+        required: true
+    secrets:
+      SONAR_TOKEN:
+        required: true
 ```

@@ -1,10 +1,13 @@
-name: API Spring Deploy
+name: Spring Scanner Snyk
 
 on:
   workflow_call:
+    secrets:
+      SNYK_TOKEN:
+        required: true
 
 jobs:
-  api:
+  spring:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
@@ -19,25 +22,22 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Download settings
+      - name: Download maven-settings
         uses: actions/download-artifact@v3
         with:
           name: maven-settings
           path: ~/.m2
 
-      - name: Maven version
+      - name: Download spring-target
+        uses: actions/download-artifact@v3
+        with:
+          name: spring-target
+          path: ./target
+
+      - name: Permission mvnw
         run: |
           mvn -v
+          git update-index --chmod=+x ./mvnw
 
-      - name: Package
-        run: mvn -e -B clean package
-
-      - name: Deploy
-        run: mvn -e -B deploy
-
-      - name: Upload api-properties
-        uses: actions/upload-artifact@v3
-        with:
-          name: api-properties
-          retention-days: 1
-          path: target/maven-archiver/pom.properties
+      - name: Snyk
+        run: mvn -e -B install -DskipTests=true -DskipTestsIT=true -Dsnyk.token=${{ secrets.SNYK_TOKEN }}
