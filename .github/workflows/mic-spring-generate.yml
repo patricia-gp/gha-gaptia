@@ -32,9 +32,10 @@ jobs:
       - name: Package
         run: mvn -e -B clean package -DskipTests=true -Dsnyk.skip=true
 
-      - name: Upload mic-workspace
+      - name: Upload mic-target
         uses: actions/upload-artifact@v3
         with:
           name: mic-target
           retention-days: 1
-          path: ./target
+          path: |
+            ./target

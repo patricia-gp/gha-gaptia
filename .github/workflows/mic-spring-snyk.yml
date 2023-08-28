@@ -22,6 +22,12 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
+      - name: Download maven-settings
+        uses: actions/download-artifact@v3
+        with:
+          name: maven-settings
+          path: ~/.m2
+
       - name: Download mic-target
         uses: actions/download-artifact@v3
         with:
@@ -33,5 +39,5 @@ jobs:
           mvn -v
           git update-index --chmod=+x ./mvnw
 
-      - name: Unit test
+      - name: Snyk
         run: mvn -e -B install -DskipTests=true -DskipTestsIT=true -Dsnyk.token=${{ secrets.SNYK_TOKEN }}
