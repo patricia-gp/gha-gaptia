@@ -1,13 +1,10 @@
-name: Microservice Spring Scanner Snyk
+name: API Spring Deploy
 
 on:
   workflow_call:
-    secrets:
-      SNYK_TOKEN:
-        required: true
 
 jobs:
-  mic:
+  api:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
@@ -22,22 +19,25 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Download maven-settings
+      - name: Download settings
         uses: actions/download-artifact@v3
         with:
           name: maven-settings
           path: ~/.m2
 
-      - name: Download mic-target
-        uses: actions/download-artifact@v3
-        with:
-          name: mic-target
-          path: ./target
-
-      - name: Permission mvnw
+      - name: Maven version
         run: |
           mvn -v
-          git update-index --chmod=+x ./mvnw
 
-      - name: Snyk
-        run: mvn -e -B install -DskipTests=true -DskipTestsIT=true -Dsnyk.token=${{ secrets.SNYK_TOKEN }}
+      - name: Package
+        run: mvn -e -B clean package
+
+      - name: Deploy
+        run: mvn -e -B deploy
+
+      - name: Upload api-properties
+        uses: actions/upload-artifact@v3
+        with:
+          name: api-properties
+          retention-days: 1
+          path: target/maven-archiver/pom.properties

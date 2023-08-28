@@ -1,4 +1,4 @@
-name: API Spring Generate
+name: API Spring Package
 
 on:
   workflow_call:
@@ -29,8 +29,11 @@ jobs:
         run: |
           mvn -v
 
-      - name: Build with Deploy
-        run: mvn -e -B clean deploy
+      - name: Package
+        run: mvn -e -B clean package
+
+      - name: Deploy
+        run: mvn -e -B deploy
 
       - name: Upload api-properties
         uses: actions/upload-artifact@v3

@@ -1,4 +1,4 @@
-name: Microservice Spring Scanner Sonar
+name: Microservice Spring Deploy
 
 on:
   workflow_call:
@@ -38,5 +38,5 @@ jobs:
           name: mic-target
           path: ./target
 
-      - name: Sonar
-        run: mvn -e -B verify sonar:sonar -DskipTestsIT=true -Dsnyk.skip=true -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }} -Dsonar.token=${{ secrets.SONAR_TOKEN }} -Dsonar.qualitygate.wait=true
+      - name: Deploy
+        run: mvn -e -B deploy -DskipTests=true -DskipTestsIT=true -Dsnyk.skip=true

@@ -1,7 +1,7 @@
-## Microservice Spring Generate Action - Example usage
+## Microservice Spring Package Action - Example usage
 
 ```
-name: Microservice Spring Generate
+name: Microservice Spring Package
 
 # Controls when the workflow will run
 on:
@@ -14,5 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-generate.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-package.yml@main
 ```
