@@ -15,4 +15,7 @@ on:
 jobs:
  build:
     uses: patricia-gp/gha-gaptia/.github/workflows/maven-settings.yml@main
+    secrets:
+      MAVEN_USER: ${{ secrets.MAVEN_USER }}
+      MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
 ```

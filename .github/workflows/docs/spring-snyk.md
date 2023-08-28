@@ -14,8 +14,7 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-snyk.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/spring-snyk.yml@main
     secrets:
-      SNYK_TOKEN:
-        required: true
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 ```

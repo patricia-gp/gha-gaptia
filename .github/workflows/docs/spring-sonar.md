@@ -14,12 +14,9 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-sonar.yml@main
-    inputs:
-      SONAR_HOST_URL:
-        type: string
-        required: true
+    uses: patricia-gp/gha-gaptia/.github/workflows/spring-sonar.yml@main
+    with:
+      SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
     secrets:
-      SONAR_TOKEN:
-        required: true
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 ```

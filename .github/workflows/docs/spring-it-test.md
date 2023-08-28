@@ -14,5 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/mic-spring-it-test.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/spring-it-test.yml@main
 ```
