@@ -1,4 +1,4 @@
-name: Tag Generate
+name: Tag Github
 
 on:
   workflow_call:
