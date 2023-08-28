@@ -1,10 +1,10 @@
-name: Tag Github
+name: Code Tag
 
 on:
   workflow_call:
 
 jobs:
-  tag:
+  code:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
@@ -13,15 +13,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download api-target
+      - name: Download spring-target
         uses: actions/download-artifact@v3
         with:
-          name: api-target
-          path: .
+          name: spring-target
+          path: ./target
 
       - name: Pom Properties
         run: |
-          cat ./pom.properties
+          cat ./target/maven-archiver/pom.properties
 
       - name: Get now
         run: echo "NOW=$(date '+%Y%m%d%H%M%S')" >> $GITHUB_ENV
@@ -32,7 +32,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
           strategy: regex
-          root: ./pom.properties
+          root: ./target/maven-archiver/pom.properties
           regex_pattern: 'version=(\S.*)'
           tag_prefix: "v"
           tag_suffix: "-${{ env.NOW }}"
