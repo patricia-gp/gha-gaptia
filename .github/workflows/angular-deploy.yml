@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  anuglar:
+  angular:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
