@@ -6,6 +6,14 @@ on:
       AWS_REGION:
         type: string
         required: true
+      ECR_REPOSITORY:
+        required: true
+      CONTAINER_NAME:
+        required: true
+      ECS_SERVICE:
+        required: true
+      ECS_CLUSTER:
+        required: true
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
@@ -16,6 +24,17 @@ jobs:
   spring:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
+        uses: actions/checkout@v3.5.3
+        with:
+          fetch-depth: 0
+
+      - name: Download spring-target
+        uses: actions/download-artifact@v3
+        with:
+          name: spring-target
+          path: ./target
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -27,11 +46,13 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
+          ECR_REPOSITORY: ${{ inputs.ECR_REPOSITORY }}
+          IMAGE_TAG: $(echo $(ls mic-gaptia*.jar) | awk -F'mic-gaptia-|.jar' '{print $2}')
         run: |
           # Build a docker container and
           # push it to ECR so that it can
@@ -44,14 +65,14 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
-          container-name: ${{ env.CONTAINER_NAME }}
+          task-definition: .github/workflows/task-definition.json
+          container-name: ${{ inputs.CONTAINER_NAME }}
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
+          service: ${{ inputs.ECS_SERVICE }}
+          cluster: ${{ inputs.ECS_CLUSTER }}
           wait-for-service-stability: true
