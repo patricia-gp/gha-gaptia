@@ -44,11 +44,10 @@ jobs:
           name: spring-target
           path: ./target
 
-      - name: App Name & Version
+      - name: App Version
         id: app-version
         run: |
-          echo "APP=$(echo $(cat ./target/maven-archiver/pom.properties | awk -F'artifactId=' '{print $2}'))" >> $GITHUB_OUTPUT
-          echo "VERSION=$(echo $(cat ./target/maven-archiver/pom.properties | awk -F'version=' '{print $2}'))" >> $GITHUB_OUTPUT
+          echo "VERSION=$(grep -e 'version=' ./target/maven-archiver/pom.properties | awk -F '=' '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Build Docker & Push to Amazon ECR
         id: build-image
