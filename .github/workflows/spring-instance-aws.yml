@@ -3,22 +3,16 @@ name: Spring Instance AWS
 on:
   workflow_call:
     inputs:
-      APP_TARGET_NAME:
-        type: string
-        required: true
       AWS_REGION:
         type: string
         required: true
-      ECR_REPOSITORY:
+      AWS_APP_NAME:
         type: string
         required: true
-      CONTAINER_NAME:
+      AWS_APP_ENVIRONMENT:
         type: string
         required: true
-      ECS_SERVICE:
-        type: string
-        required: true
-      ECS_CLUSTER:
+      AWS_ECR_REPOSITORY:
         type: string
         required: true
     secrets:
@@ -36,12 +30,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download spring-target
-        uses: actions/download-artifact@v3
-        with:
-          name: spring-target
-          path: ./target
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -53,37 +41,19 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Image Version
-        id: image-version
-        run: |
-          echo "version=$(echo $(ls ./target/${{ inputs.APP_TARGET_NAME }}*.jar) | awk -F'${{ inputs.APP_TARGET_NAME }}-|.jar' '{print $2}')" >> $GITHUB_OUTPUT
+      - name: Download spring-target
+        uses: actions/download-artifact@v3
+        with:
+          name: spring-target
+          path: ./target
 
-      - name: Build, tag, and push image to Amazon ECR
+      - name: Build Docker and Push image to Amazon ECR
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ inputs.ECR_REPOSITORY }}
-          IMAGE_TAG: ${{ steps.image-version.outputs.version }}
+          ECR_REPOSITORY: ${{ inputs.AWS_ECR_REPOSITORY }}
+          IMAGE_TAG: $(echo $(ls ./target/${{ inputs.AWS_APP_NAME }}*.jar) | awk -F'${{ inputs.AWS_APP_NAME }}-|.jar' '{print $2}')
         run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: .github/workflows/task-definition.json
-          container-name: ${{ inputs.CONTAINER_NAME }}
-          image: ${{ steps.build-image.outputs.image }}
-
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ inputs.ECS_SERVICE }}
-          cluster: ${{ inputs.ECS_CLUSTER }}
-          wait-for-service-stability: true
