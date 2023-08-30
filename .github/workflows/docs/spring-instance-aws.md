@@ -19,7 +19,6 @@ jobs:
     uses: patricia-gp/gha-gaptia/.github/workflows/spring-instance-aws.yml@main
     with:      
       AWS_REGION: ${{ vars.AWS_REGION }}
-      AWS_ECR_REPOSITORY: ${{ vars.AWS_ECR_REPOSITORY }}
       AWS_ECS_CLUSTER: ${{ vars.AWS_ECS_CLUSTER }}
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
