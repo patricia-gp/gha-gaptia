@@ -6,13 +6,10 @@ on:
       AWS_REGION:
         type: string
         required: true
-      AWS_APP_NAME:
-        type: string
-        required: true
-      AWS_APP_ENVIRONMENT:
-        type: string
-        required: true
       AWS_ECR_REPOSITORY:
+        type: string
+        required: true
+      AWS_ECS_CLUSTER:
         type: string
         required: true
     secrets:
@@ -47,13 +44,19 @@ jobs:
           name: spring-target
           path: ./target
 
+      - name: App Name & Version
+        id: app-version
+        run: |
+          echo "APP=$(echo $(cat ./target/maven-archiver/pom.properties | awk -F'artifactId=' '{print $2}'))" >> $GITHUB_OUTPUT
+          echo "VERSION=$(echo $(cat ./target/maven-archiver/pom.properties | awk -F'version=' '{print $2}'))" >> $GITHUB_OUTPUT
+
       - name: Build Docker & Push to Amazon ECR
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ inputs.AWS_ECR_REPOSITORY }}
-        run: |
-          IMAGE_TAG=$(echo $(ls ./target/${{ inputs.AWS_APP_NAME }}*.jar) | awk -F'${{ inputs.AWS_APP_NAME }}-|.jar' '{print $2}')
+          IMAGE_TAG: ${{ steps.app-version.outputs.VERSION }}
+        run: |          
           echo "Building Docker $ECR_REPOSITORY:$IMAGE_TAG ..."
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           echo "Pushing Docker ...
