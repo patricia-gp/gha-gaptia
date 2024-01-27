@@ -1,10 +1,6 @@
 name: Spring Package
 
 on:
-  push:
-    branches:
-      - main
-      - develop
   workflow_call:
 
 jobs:

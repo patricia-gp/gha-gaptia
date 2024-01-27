@@ -5,9 +5,9 @@ name: Spring Unit Test
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the all branchs
+  # Triggers the workflow on push or pull request events but only for the "main" or "develop" branch
   push:
-    branches: [ "*" ]
+    branches: [ "main", "develop" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_call:

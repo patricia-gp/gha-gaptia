@@ -5,9 +5,9 @@ name: Code Tag
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events but only for the "main" or "develop" branch
   push:
-    branches: [ "main"]
+    branches: [ "main", "develop" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_call:

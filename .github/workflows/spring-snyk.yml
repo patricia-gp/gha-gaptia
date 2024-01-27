@@ -1,9 +1,6 @@
 name: Spring Scanner Snyk
 
 on:
-  push:
-    branches:
-      - *
   workflow_call:
     secrets:
       SNYK_TOKEN:
