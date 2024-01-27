@@ -1,6 +1,9 @@
 name: Maven Settings
 
 on:
+  push:
+    branches:
+      - *
   workflow_call:
     secrets:
       MAVEN_USER:

@@ -1,6 +1,9 @@
 name: Spring Integration Test
 
 on:
+  push:
+    branches:
+      - *
   workflow_call:
 
 jobs:

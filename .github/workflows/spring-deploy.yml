@@ -1,6 +1,10 @@
 name: Spring Deploy
 
 on:
+  push:
+    branches:
+      - main
+      - develop
   workflow_call:
 
 jobs:

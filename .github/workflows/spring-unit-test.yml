@@ -1,6 +1,9 @@
 name: Spring Unit Test
 
 on:
+  push:
+    branches:
+      - *
   workflow_call:
 
 jobs:

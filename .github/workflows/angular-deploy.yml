@@ -1,6 +1,10 @@
 name: Angular Deploy
 
 on:
+  push:
+    branches:
+      - main
+      - develop
   workflow_call:
 
 jobs:

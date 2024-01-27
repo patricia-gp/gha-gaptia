@@ -1,6 +1,10 @@
 name: Spring Instance AWS
 
 on:
+  push:
+    branches:
+      - main
+      - develop
   workflow_call:
     inputs:
       AWS_REGION:
