@@ -44,7 +44,7 @@ jobs:
           cat ./settings.xml
 
       - name: Upload maven-settings
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: maven-settings
           retention-days: 1
