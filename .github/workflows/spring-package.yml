@@ -51,7 +51,8 @@ jobs:
 
       - name: View settings.xml
         run: |
-          cat ./settings.xml
+          mv ./settings.xml ~/.m2
+          cat ~/.m2/settings.xml
 
       - name: Maven version
         run: |

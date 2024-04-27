@@ -26,35 +26,6 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Generate settings.xml for Maven Builds
-        uses: whelk-io/maven-settings-xml-action@v21
-        with:
-          output_file: ./settings.xml
-          active_profiles: '[ "github" ]'
-          servers: >
-            [
-              {
-                "id": "github",
-                "username": "${{ secrets.MAVEN_USER || 'YOUR_USERNAME' }}",
-                "password": "${{ secrets.MAVEN_TOKEN || 'YOUR_PERSONAL_ACCESS_TOKEN' }}"
-              }
-            ]
-          repositories: >
-            [
-              {
-                "id": "central",
-                "url": "https://repo1.maven.org/maven2"
-              },
-              {
-                "id": "github",
-                "url": "https://maven.pkg.github.com/patricia-gp/api-gaptia"
-              }
-            ]        
-
-      - name: View settings.xml
-        run: |
-          cat ./settings.xml
-
       - name: Download spring-target
         uses: actions/download-artifact@v4
         with:
