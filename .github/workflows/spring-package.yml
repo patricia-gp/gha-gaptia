@@ -66,4 +66,7 @@ jobs:
         with:
           name: spring-target
           retention-days: 1
-          path: ./target
+          path: |
+            ./src/*/target
+            ./target
+          
