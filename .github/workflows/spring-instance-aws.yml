@@ -57,9 +57,16 @@ jobs:
 
       - name: Download task definition
         run: |
-          aws ecs describe-task-definition --task-definition mic-task-${{ steps.app-version.outputs.APP }}:1 --query taskDefinition > task-definition.json
-          echo $(cat task-definition.json | jq 'del(.taskDefinitionArn,.requiresAttributes,.compatibilities,.revision,.status,.registeredAt,.registeredBy )') > task-definition.json
-          cat task-definition.json
+          aws ecs describe-task-definition --task-definition mic-task-${{ steps.app-version.outputs.APP }} --query taskDefinition > task-definition.json
+          echo $(cat task-definition.json | jq 'del(
+                  .taskDefinitionArn,
+                  .requiresAttributes,
+                  .compatibilities,
+                  .revision,
+                  .status,
+                  .registeredAt,
+                  .registeredBy
+              )') > task-definition.json
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
