@@ -27,7 +27,7 @@ jobs:
         run: echo "NOW=$(date '+%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
       - name: Tag Version
-        uses: butlerlogic/action-autotag@stable
+        uses: butlerlogic/action-autotag@1.1.2
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
