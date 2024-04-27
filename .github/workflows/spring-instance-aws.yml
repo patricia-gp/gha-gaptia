@@ -37,21 +37,18 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Download spring-target
-        if: false
         uses: actions/download-artifact@v4
         with:
           name: spring-target
           path: .
 
       - name: App Version
-        if: false
         id: app-version
         run: |
           echo "APP=$(grep -e 'artifactId=' ./target/maven-archiver/pom.properties | awk -F '=' '{print $2}')" >> $GITHUB_OUTPUT
           echo "VERSION=$(grep -e 'version=' ./target/maven-archiver/pom.properties | awk -F '=' '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Build Docker & Push to Amazon ECR
-        if: false
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
