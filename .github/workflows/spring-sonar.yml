@@ -30,7 +30,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: spring-target
-          path: ./target
+          path: .
 
       - name: Sonar
         run: mvn -e -B verify sonar:sonar -DskipTestsIT=true -Dsnyk.skip=true -Dsonar.host.url=${{ inputs.SONAR_HOST_URL }} -Dsonar.token=${{ secrets.SONAR_TOKEN }} -Dsonar.qualitygate.wait=true

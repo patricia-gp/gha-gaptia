@@ -23,7 +23,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: spring-target
-          path: ./target
+          path: .
 
       - name: Deploy
         run: mvn -e -B deploy -DskipTests=true -DskipTestsIT=true -Dsnyk.skip=true

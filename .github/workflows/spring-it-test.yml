@@ -23,7 +23,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: spring-target
-          path: ./target
+          path: .
 
       - name: Integration test
         run: mvn -e -B verify -Ptest -DskipTests=true -Dsnyk.skip=true
