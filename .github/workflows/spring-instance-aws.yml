@@ -87,7 +87,3 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: "service-${{ steps.app-version.outputs.APP }}"
           cluster: "cluster-${{ steps.app-version.outputs.APP }}"
-          # codedeploy-application: "deploy-${{ steps.app-version.outputs.APP }}"
-          # codedeploy-deployment-group: "group-deploy-${{ steps.app-version.outputs.APP }}"
-          # codedeploy-appspec: appspec.json
-          wait-for-service-stability: true
