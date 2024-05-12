@@ -48,7 +48,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: "mic-ecr-${{ steps.app-version.outputs.APP }}"
+          ECR_REPOSITORY: "ecr-${{ steps.app-version.outputs.APP }}"
           IMAGE_TAG: ${{ steps.app-version.outputs.VERSION }}
         run: |          
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
@@ -57,7 +57,7 @@ jobs:
 
       - name: Download task definition
         run: |
-          aws ecs describe-task-definition --task-definition mic-task-${{ steps.app-version.outputs.APP }} --query taskDefinition > task-definition.json
+          aws ecs describe-task-definition --task-definition task-${{ steps.app-version.outputs.APP }} --query taskDefinition > task-definition.json
 
       - name: Download code deploy
         run: |
@@ -68,16 +68,16 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: "mic-container-${{ steps.app-version.outputs.APP }}"
+          container-name: "container-${{ steps.app-version.outputs.APP }}"
           image: ${{ steps.build-image.outputs.IMAGE }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: "mic-service-${{ steps.app-version.outputs.APP }}"
-          cluster: "mic-cluster-${{ steps.app-version.outputs.APP }}"
-          codedeploy-appspec: appspec.json
-          codedeploy-application: "mic-deploy-${{ steps.app-version.outputs.APP }}"
-          codedeploy-deployment-group: "mic-deploy-${{ steps.app-version.outputs.APP }}"
-          wait-for-service-stability: false
+          service: "service-${{ steps.app-version.outputs.APP }}"
+          cluster: "cluster-${{ steps.app-version.outputs.APP }}"
+          # codedeploy-application: "deploy-${{ steps.app-version.outputs.APP }}"
+          # codedeploy-deployment-group: "group-deploy-${{ steps.app-version.outputs.APP }}"
+          # codedeploy-appspec: appspec.json
+          wait-for-service-stability: true
