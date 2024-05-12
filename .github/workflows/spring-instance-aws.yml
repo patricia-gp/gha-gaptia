@@ -88,8 +88,4 @@ jobs:
       - name: Create CodeDeploy Deployment
         id: deploy
         run: |
-          aws deploy create-deployment \
-            --application-name "deploy-${{ steps.app-version.outputs.APP }}" \
-            --deployment-group-name "group-deploy-${{ steps.app-version.outputs.APP }}" \
-            --deployment-config-name CodeDeployDefault.OneAtATime \
-            --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+          aws ecs update-service --cluster "cluster-${{ steps.app-version.outputs.APP }}" --service "service-${{ steps.app-version.outputs.APP }}" --force-new-deployment
