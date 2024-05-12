@@ -67,25 +67,19 @@ jobs:
                   .registeredAt,
                   .registeredBy
               )') > task-definition.json
-          cat task-definition.json
 
-        #- name: Fill in the new image ID in the Amazon ECS task definition
-        #  id: task-def
-        #  uses: aws-actions/amazon-ecs-render-task-definition@v1
-          #  with:
-          #    task-definition: task-definition.json
-          #    container-name: "container-${{ steps.app-version.outputs.APP }}"
-          #    image: ${{ steps.build-image.outputs.IMAGE }}
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: "container-${{ steps.app-version.outputs.APP }}"
+          image: ${{ steps.build-image.outputs.IMAGE }}
 
-        #- name: Deploy Amazon ECS task definition
-        #  uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-          #  with:
-          #    task-definition: ${{ steps.task-def.outputs.task-definition }}
-          #    cluster: "cluster-${{ steps.app-version.outputs.APP }}"
-          #    service: "service-${{ steps.app-version.outputs.APP }}"
-          #    wait-for-service-stability: true
-
-      - name: Create CodeDeploy Deployment
-        id: deploy
-        run: |
-          aws ecs update-service --cluster "cluster-${{ steps.app-version.outputs.APP }}" --service "service-${{ steps.app-version.outputs.APP }}" --force-new-deployment
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: "service-${{ steps.app-version.outputs.APP }}"
+          cluster: "cluster-${{ steps.app-version.outputs.APP }}"
+          wait-for-service-stability: true
