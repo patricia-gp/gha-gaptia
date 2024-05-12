@@ -67,7 +67,8 @@ jobs:
                   .registeredAt,
                   .registeredBy
               )') > task-definition.json
-          
+          cat task-definition.json
+
       #- name: Download code deploy
       #  run: |
       #    aws ecs describe-XXXX  > appspec.json
@@ -83,7 +84,7 @@ jobs:
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          task-definition: task-definition.json
           service: "service-${{ steps.app-version.outputs.APP }}"
           cluster: "cluster-${{ steps.app-version.outputs.APP }}"
           # codedeploy-application: "deploy-${{ steps.app-version.outputs.APP }}"
