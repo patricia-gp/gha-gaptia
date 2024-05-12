@@ -82,3 +82,4 @@ jobs:
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           cluster: "cluster-${{ steps.app-version.outputs.APP }}"
+          wait-for-service-stability: true
