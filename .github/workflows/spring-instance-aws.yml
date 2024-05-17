@@ -57,6 +57,6 @@ jobs:
 
       - name: Update Function
         run: |
-          aws lambda get-function --function-name "function-lambda-${{ steps.app-version.outputs.APP }}" --query 'Code.Location'
+          aws lambda get-function --function-name "function-lambda-${{ steps.app-version.outputs.APP }}" --query "Code.Location"
           zip lambda.zip lambda.py
           aws lambda update-function-code --function-name "function-lambda-${{ steps.app-version.outputs.APP }}" --zip-file fileb://lambda.zip
