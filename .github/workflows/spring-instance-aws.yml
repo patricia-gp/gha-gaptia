@@ -76,10 +76,13 @@ jobs:
           container-name: "container-${{ steps.app-version.outputs.APP }}"
           image: ${{ steps.build-image.outputs.IMAGE }}
 
-      - name: Deploy Amazon ECS task definition
+      - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          task-definition: task-definition.json
           service: "service-${{ steps.app-version.outputs.APP }}"
           cluster: "cluster-${{ steps.app-version.outputs.APP }}"
           wait-for-service-stability: true
+          codedeploy-appspec: appspec.json
+          codedeploy-application: "deploy-${{ steps.app-version.outputs.APP }}"
+          codedeploy-deployment-group: "group-deploy-${{ steps.app-version.outputs.APP }}"
