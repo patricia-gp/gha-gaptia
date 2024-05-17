@@ -55,34 +55,8 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
           echo "IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
 
-      - name: Download task definition
+      - name: Update Function
         run: |
-          aws ecs describe-task-definition --task-definition task-${{ steps.app-version.outputs.APP }} --query taskDefinition > task-definition.json
-          echo $(cat task-definition.json | jq 'del(
-                  .taskDefinitionArn,
-                  .requiresAttributes,
-                  .compatibilities,
-                  .revision,
-                  .status,
-                  .registeredAt,
-                  .registeredBy
-              )') > task-definition.json
-
-      - name: Fill task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: task-definition.json
-          container-name: "container-${{ steps.app-version.outputs.APP }}"
-          image: ${{ steps.build-image.outputs.IMAGE }}
-
-      - name: Updating task definition
-        run: cat ${{ steps.task-def.outputs.task-definition }}
-
-      - name: Deploy to Amazon ECS
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: "service-${{ steps.app-version.outputs.APP }}"
-          cluster: "cluster-${{ steps.app-version.outputs.APP }}"
-          wait-for-service-stability: true
+          aws lambda get-function --function-name "function-lambda-${{ steps.app-version.outputs.APP }}" --query 'Code.Location'
+          zip lambda.zip lambda.py
+          aws lambda update-function-code --function-name "function-lambda-${{ steps.app-version.outputs.APP }}" --zip-file fileb://lambda.zip
