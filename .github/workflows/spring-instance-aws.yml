@@ -59,6 +59,9 @@ jobs:
         run: |
           aws ecs describe-task-definition --task-definition ${{ steps.app-version.outputs.APP }} --query taskDefinition > task-definition.json
           echo $(cat task-definition.json | jq 'del(
+                  .taskDefinitionArn,
+                  .requiresAttributes,
+                  .compatibilities,
                   .revision,
                   .status,
                   .registeredAt,
