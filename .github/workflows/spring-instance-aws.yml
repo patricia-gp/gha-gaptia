@@ -59,7 +59,6 @@ jobs:
         run: |
           aws ecs describe-task-definition --task-definition ${{ steps.app-version.outputs.APP }} --query taskDefinition > task-definition.json
           echo $(cat task-definition.json | jq 'del(
-                  .taskDefinitionArn,
                   .requiresAttributes,
                   .compatibilities,
                   .revision,
@@ -82,9 +81,10 @@ jobs:
 
       - name: Create appspec
         run: |
+          task_definition_arn=$(cat task-definition.json | jq -r '.taskDefinitionArn')
           container_name=$(cat task-definition.json | jq -r '.containerDefinitions[].name') 
           container_port=$(cat task-definition.json | jq -r '.containerDefinitions[].portMappings[].containerPort')
-          echo "{\"version\":1.0,\"Resources\":[{\"TargetService\":{\"Type\":\"AWS::ECS::Service\",\"Properties\":{\"LoadBalancerInfo\":{\"ContainerName\":\"${container_name}\",\"ContainerPort\":${container_port}}}}}]}" > appspec.json
+          echo "{\"version\":1.0,\"Resources\":[{\"TargetService\":{\"Type\":\"AWS::ECS::Service\",\"Properties\":{\"TaskDefinition\":\"${task_definition_arn}\",\"LoadBalancerInfo\":{\"ContainerName\":\"${container_name}\",\"ContainerPort\":${container_port}}}}}]}" > appspec.json
           cat appspec.json
 
       - name: Deploy to Amazon ECS
