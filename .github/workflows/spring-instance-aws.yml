@@ -78,8 +78,4 @@ jobs:
 
       - name: Deploy to Amazon ECS
         run: |
-          aws deploy create-deployment \
-          --application-name ${{ steps.app-version.outputs.APP }}\
-          --deployment-group-name ${{ steps.app-version.outputs.APP }} \
-          --s3-location bucket=${{ steps.app-version.outputs.APP }},key=appspec.yml \
-          --s3-location bucket=${{ steps.app-version.outputs.APP }},key=bootstrap.sh
+          aws deploy create-deployment --application-name ${{ steps.app-version.outputs.APP }} --deployment-group-name ${{ steps.app-version.outputs.APP }} --s3-location bucket=${{ steps.app-version.outputs.APP }},bundleType=zip,key=deploy.zip
