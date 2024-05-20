@@ -100,15 +100,10 @@ jobs:
                   }
                 }
               }
-            ],
-            "BeforeInstall": [
-              {
-                "location": "bootstrap.sh",
-                "timeout": 300
-              }
             ]
           }
           EOF
+          cat appspec.json
 
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
