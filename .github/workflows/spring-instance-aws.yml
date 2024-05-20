@@ -59,6 +59,7 @@ jobs:
         run: |
           aws ecs describe-task-definition --task-definition ${{ steps.app-version.outputs.APP }} --query taskDefinition > task-definition.json
           echo $(cat task-definition.json | jq 'del(
+                  .taskDefinitionArn,
                   .requiresAttributes,
                   .compatibilities,
                   .revision,
@@ -75,16 +76,10 @@ jobs:
           container-name: ${{ steps.app-version.outputs.APP }}
           image: ${{ steps.build-image.outputs.IMAGE }}
 
-      - name: Print task definition
-        run: |
-          cat task-definition.json
-
       - name: Deploy to Amazon ECS
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: task-definition.json
-          service: ${{ steps.app-version.outputs.APP }}
-          cluster: ${{ steps.app-version.outputs.APP }}
-          wait-for-service-stability: true
-          codedeploy-application: ${{ steps.app-version.outputs.APP }}
-          codedeploy-deployment-group: ${{ steps.app-version.outputs.APP }}
+        run: |
+          aws deploy create-deployment \
+          --application-name ${{ steps.app-version.outputs.APP }}\
+          --deployment-group-name ${{ steps.app-version.outputs.APP }} \
+          --s3-location bucket=${{ steps.app-version.outputs.APP }},key=appspec.yml \
+          --s3-location bucket=${{ steps.app-version.outputs.APP }},key=bootstrap.sh
