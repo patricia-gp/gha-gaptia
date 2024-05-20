@@ -79,13 +79,6 @@ jobs:
         run: |
           cat task-definition.json
 
-      - name: Download appspec
-        run: |
-          aws s3 cp s3://${{ steps.app-version.outputs.APP }}/appspec.yml appspec.yml
-          cat appspec.yml
-          aws s3 cp s3://${{ steps.app-version.outputs.APP }}/bootstrap.sh bootstrap.sh
-          cat appspec.yml
-
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
@@ -93,6 +86,5 @@ jobs:
           service: ${{ steps.app-version.outputs.APP }}
           cluster: ${{ steps.app-version.outputs.APP }}
           wait-for-service-stability: true
-          codedeploy-appspec: appspec.yml
           codedeploy-application: ${{ steps.app-version.outputs.APP }}
           codedeploy-deployment-group: ${{ steps.app-version.outputs.APP }}
