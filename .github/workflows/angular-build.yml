@@ -19,6 +19,10 @@ jobs:
           cache: 'npm'
           cache-dependency-path: package-lock.json
 
+      - name: Ng version
+        run: |
+          ng version
+
       - name: Build
         run: npm run build:prod
 
