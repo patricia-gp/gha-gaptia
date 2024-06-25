@@ -19,16 +19,20 @@ jobs:
           cache: 'npm'
           cache-dependency-path: package-lock.json
 
+      - name: Install
+        run: |
+          npm install
+
       - name: Download angular-dist
         uses: actions/download-artifact@v4
         with:
           name: angular-dist
           path: .
 
+      - name: E2E test
+        run: npm run e2e
+
       - name: Run Cypress
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-
-      - name: E2E test
-        run: npm run e2e

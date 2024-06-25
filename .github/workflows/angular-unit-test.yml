@@ -19,6 +19,10 @@ jobs:
           cache: 'npm'
           cache-dependency-path: package-lock.json
 
+      - name: Install
+        run: |
+          npm install
+
       - name: Download angular-dist
         uses: actions/download-artifact@v4
         with:
