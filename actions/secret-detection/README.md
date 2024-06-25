@@ -1,6 +1,6 @@
 # Secret Detection Action
 
-This github action scans a repository using Yelp.
+This github action scans a repository.
 
 ## Example GitHub Workflow
 ```
@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Scan secrets with Yelp
+      - name: Scan secrets
         uses: patricia-gp/gha-gaptia/actions/secret-detection@main
   
 pip install detect-secrets
