@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  code:
+  angular:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
