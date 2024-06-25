@@ -1,4 +1,4 @@
-name: Spring Instance AWS
+name: Angular Instance AWS
 
 on:
   workflow_call:
@@ -21,10 +21,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download spring-target
+      - name: Download angular-dist
         uses: actions/download-artifact@v4
         with:
-          name: spring-target
+          name: angular-dist
           path: .
 
       - name: Configure AWS credentials
@@ -41,8 +41,8 @@ jobs:
       - name: App Version
         id: app-version
         run: |
-          echo "APP=$(grep -e 'artifactId=' ./target/maven-archiver/pom.properties | awk -F '=' '{print $2}')" >> $GITHUB_OUTPUT
-          echo "VERSION=$(grep -e 'version=' ./target/maven-archiver/pom.properties | awk -F '=' '{print $2}')" >> $GITHUB_OUTPUT
+          echo "APP=$(grep -o 'this.appName=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
+          echo "VERSION=$(grep -o 'this.appVersion=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Build Docker & Push to Amazon ECR
         id: build-image

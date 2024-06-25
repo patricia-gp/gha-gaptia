@@ -1,7 +1,9 @@
-## Angular Deploy Action - Example usage
+## Angular E2E Action - Example usage
 
 ```
-name: Angular Deploy
+# This is a basic workflow to help you get started with Actions
+
+name: Angular Build
 
 # Controls when the workflow will run
 on:
@@ -14,5 +16,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/angular-deploy.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/angular-e2e-test.yml@main
 ```
