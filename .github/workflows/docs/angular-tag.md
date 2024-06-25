@@ -1,4 +1,4 @@
-## Code Tag Action - Example usage
+## Angular Tag Action - Example usage
 
 ```
 name: Code Tag
@@ -14,5 +14,5 @@ on:
   
 jobs:
  build:
-    uses: patricia-gp/gha-gaptia/.github/workflows/code-tag.yml@main
+    uses: patricia-gp/gha-gaptia/.github/workflows/angular-tag.yml@main
 ```

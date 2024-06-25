@@ -1,4 +1,4 @@
-name: Code Tag
+name: Angular Tag
 
 on:
   workflow_call:
@@ -13,15 +13,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download spring-target
+      - name: Download angular-dist
         uses: actions/download-artifact@v4
         with:
-          name: spring-target
+          name: angular-dist
           path: .
 
-      - name: Pom Properties
+      - name: App Version
         run: |
-          cat ./target/maven-archiver/pom.properties
+          echo "VERSION=$(grep -o 'this.appVersion=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_ENV
 
       - name: Get now
         run: echo "NOW=$(date '+%Y%m%d%H%M%S')" >> $GITHUB_ENV
@@ -31,8 +31,6 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
-          strategy: regex
-          root: ./target/maven-archiver/pom.properties
-          regex_pattern: 'version=(\S.*)'
           tag_prefix: "v"
+          version: '${{ env.VERSION }}'
           tag_suffix: "-${{ env.NOW }}"
