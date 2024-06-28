@@ -41,8 +41,8 @@ jobs:
       - name: App Version
         id: app-version
         run: |
-          echo "APP=$(grep -o 'this.appName=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
-          echo "VERSION=$(grep -o 'this.appVersion=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
+          echo "APP=$(grep -o 'this.appName=".*",' ./*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
+          echo "VERSION=$(grep -o 'this.appVersion=".*",' ./*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Build Docker & Push to Amazon ECR
         id: build-image
