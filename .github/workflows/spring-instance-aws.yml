@@ -75,10 +75,6 @@ jobs:
           container-name: ${{ steps.app-version.outputs.APP }}
           image: ${{ steps.build-image.outputs.IMAGE }}
 
-      - name: Print task definition
-        run: |
-          cat task-definition.json
-
       - name: Create appspec
         run: |
           task_definition_arn=$(cat task-definition.json | jq -r '.taskDefinitionArn')
@@ -103,12 +99,11 @@ jobs:
             ]
           }
           EOF
-          cat appspec.json
 
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: task-definition.json
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ steps.app-version.outputs.APP }}
           cluster: ${{ steps.app-version.outputs.APP }}
           wait-for-service-stability: true
