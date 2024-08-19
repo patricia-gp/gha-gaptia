@@ -27,7 +27,10 @@ jobs:
 
       - name: List
         run: |
+          pwd
           ls -laR
+          cat ./e2e/docker-compose.yaml
+          cat  /home/runner/work/mic-gaptia/mic-gaptia/e2e/docker-compose.yaml
 
       - name: Integration test
         run: mvn -e -B verify -Ptest -DskipTests=true -Dsnyk.skip=true
