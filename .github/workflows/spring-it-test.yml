@@ -25,12 +25,8 @@ jobs:
           name: spring-target
           path: .
 
-      - name: List
-        run: |
-          echo 'pgp----------------------------------pgp'
-          ls /home/runner/work/mic-gaptia/mic-gaptia/e2e
-          echo 'pgp----------------------------------pgp'
-          cat /home/runner/work/mic-gaptia/mic-gaptia/e2e/docker-compose.yaml
-
       - name: Integration test
-        run: mvn -e -B verify -Ptest -DskipTests=true -Dsnyk.skip=true
+        run: |
+          ls -l /home/runner/work/mic-gaptia/mic-gaptia/e2e/docker-compose.yaml
+          cat /home/runner/work/mic-gaptia/mic-gaptia/e2e/docker-compose.yaml
+          mvn -e -B verify -Ptest -DskipTests=true -Dsnyk.skip=true
