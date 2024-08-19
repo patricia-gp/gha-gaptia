@@ -23,16 +23,12 @@ jobs:
         run: |
           cat ./target/maven-archiver/pom.properties
 
-      - name: Get now
-        run: echo "NOW=$(date '+%Y%m%d%H%M%S')" >> $GITHUB_ENV
-
       - name: Tag Version
         uses: butlerlogic/action-autotag@1.1.2
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
+          tag_prefix: "v"
           strategy: regex
           root: ./target/maven-archiver/pom.properties
           regex_pattern: 'version=(\S.*)'
-          tag_prefix: "v"
-          tag_suffix: "-${{ env.NOW }}"

@@ -23,14 +23,10 @@ jobs:
         run: |
           echo "VERSION=$(grep -o 'this.appVersion=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_ENV
 
-      - name: Get now
-        run: echo "NOW=$(date '+%Y%m%d%H%M%S')" >> $GITHUB_ENV
-
       - name: Tag Version
         uses: butlerlogic/action-autotag@1.1.2
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
           tag_prefix: "v"
-          version: '${{ env.VERSION }}'
-          tag_suffix: "-${{ env.NOW }}"
+          version: "${{ env.VERSION }}"
