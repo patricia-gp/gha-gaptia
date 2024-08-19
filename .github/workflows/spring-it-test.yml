@@ -28,8 +28,11 @@ jobs:
       - name: List
         run: |
           pwd
+          echo '----------------------------------'
           ls -laR
+          echo '----------------------------------'
           cat ./e2e/docker-compose.yaml
+          echo '----------------------------------'
           cat  /home/runner/work/mic-gaptia/mic-gaptia/e2e/docker-compose.yaml
 
       - name: Integration test
