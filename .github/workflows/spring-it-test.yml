@@ -29,4 +29,5 @@ jobs:
         run: |
           ls -l /home/runner/work/mic-gaptia/mic-gaptia/e2e/docker-compose.yaml
           cat /home/runner/work/mic-gaptia/mic-gaptia/e2e/docker-compose.yaml
+          docker-compose version
           mvn -e -B verify -Ptest -DskipTests=true -Dsnyk.skip=true
