@@ -28,7 +28,6 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
-          tag_prefix: "v"
           strategy: regex
           root: ./target/maven-archiver/pom.properties
           regex_pattern: 'version=(\S.*)'
