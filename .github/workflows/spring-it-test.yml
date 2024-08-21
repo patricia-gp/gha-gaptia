@@ -5,8 +5,11 @@ on:
 
 jobs:
   spring:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
+      - name: Docker compose
+        run: docker-compose -v
+
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
         uses: actions/checkout@v4
         with:
