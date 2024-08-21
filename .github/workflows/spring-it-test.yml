@@ -5,7 +5,7 @@ on:
 
 jobs:
   spring:
-    runs-on: ubuntu-latest
+      runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repo ${{ github.repository }} Brach ${{ github.ref }}
         uses: actions/checkout@v4
@@ -27,7 +27,4 @@ jobs:
 
       - name: Integration test
         run: |
-          ls -l /home/runner/work/mic-gaptia/mic-gaptia/e2e/docker-compose.yaml
-          cat /home/runner/work/mic-gaptia/mic-gaptia/e2e/docker-compose.yaml
-          docker-compose version
           mvn -e -B verify -Ptest -DskipTests=true -Dsnyk.skip=true
