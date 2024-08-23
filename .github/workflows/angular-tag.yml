@@ -20,12 +20,13 @@ jobs:
           path: .
 
       - name: App Version
+        id: app-version
         run: |
-          echo "VERSION=$(grep -o 'this.appVersion=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_ENV
+          echo "VERSION=$(grep -o 'this.appVersion=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@master
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
-          version: "${{ env.VERSION }}"
+          version: ${{ steps.app-version.outputs.VERSION }}
