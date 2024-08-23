@@ -24,7 +24,7 @@ jobs:
           cat ./target/maven-archiver/pom.properties
 
       - name: Tag Version
-        uses: butlerlogic/action-autotag@1.1.2
+        uses: butlerlogic/action-autotag@1.1.4
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
