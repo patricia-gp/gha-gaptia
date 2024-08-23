@@ -22,7 +22,7 @@ jobs:
       - name: App Version
         id: app-version
         run: |
-          echo "VERSION=$(grep -o 'this.appVersion=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
+          echo "VERSION=$(grep -o 'this.appVersion=".*",' ./*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Tag Version
         uses: rickstaa/action-create-tag@v1.7.2
