@@ -14,7 +14,7 @@ jobs:
           fetch-depth: 0
 
       - name: Download angular-dist
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: angular-dist
           path: .
@@ -24,7 +24,7 @@ jobs:
           echo "VERSION=$(grep -o 'this.appVersion=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_ENV
 
       - name: Tag Version
-        uses: butlerlogic/action-autotag@1.1.3
+        uses: butlerlogic/action-autotag@1.1.4
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
