@@ -25,8 +25,7 @@ jobs:
           echo "VERSION=$(grep -o 'this.appVersion=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Tag Version
-        uses: butlerlogic/action-autotag@1.1.2
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        uses: rickstaa/action-create-tag@v1.7.2
         with:
-          version: ${{ steps.app-version.outputs.VERSION }}
+          tag: ${{ steps.app-version.outputs.VERSION }}
+          tag_exists_error: true
