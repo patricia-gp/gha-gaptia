@@ -23,10 +23,9 @@ jobs:
         id: app-version
         run: |
           echo "VERSION=$(grep -e 'version=' ./target/maven-archiver/pom.properties | awk -F '=' '{print $2}')" >> $GITHUB_OUTPUT
-          echo "${VERSION}"
 
       - name: Tag Version
-        uses: butlerlogic/action-autotag@1.1.4
+        uses: butlerlogic/action-autotag@1.1.2
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
