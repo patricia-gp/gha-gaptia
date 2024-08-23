@@ -23,6 +23,7 @@ jobs:
         id: app-version
         run: |
           echo "VERSION=$(grep -o 'this.appVersion=".*",' ./dist/*/main*.js | awk -F '"' '{print $2}')" >> $GITHUB_OUTPUT
+          echo "$VERSION"
 
       - name: Tag Version
         uses: butlerlogic/action-autotag@master
